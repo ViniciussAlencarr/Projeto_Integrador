@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import home, form, form_User, create, createUser, delete, view
+from app.views import home, form, form_User, create, createUser, delete, view, update, edit
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +26,8 @@ urlpatterns = [
     path('createUser/', createUser, name='createUser'),
     path('delete/<int:pk>/', delete, name='delete'),
     path('view/<int:pk>/', view, name='view'),
+    path('update/<int:pk>/', update, name='update'),
+    path('edit/<int:pk>/', edit, name='edit'),
+    path('view/<int:pk>/', view, name='view'),
+   
 ]

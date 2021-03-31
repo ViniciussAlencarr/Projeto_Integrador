@@ -33,16 +33,30 @@
           </div>
         </div>
       </nav>
+      {% load crispy_forms_tags %}
       <div class="col-8 m-auto pt-4 pb-2 text-center">
-          {{db.id}}
-        <form name="form" id="form" action="/create/" method="POST">
-          {% csrf_token %}
-          {{form.as_p}}
+        <h1>Cadastro</h1>
+        <div id="result"></div>
+        <form name="form" id="form" action="{% if db %}/update/{{db.id}}/{% else %} /create/{% endif %}" method="POST">
+          <div class="form">
+            {% csrf_token %}
+          
+            {{form|crispy}}
+          </div>
           <input type="submit" class="btn btn-success mt-4" value="Cadastrar">
         </form>
         
       </div>
-      
-    
+      <style>
+        .requiredField {
+          text-align: left;
+          display: flex;
+          padding: 10px;
+          font-weight: bolder;
+          font-size: larger;
+        }
+      </style>    
+      {% load static %}
+      <script src="{% static 'javascript.js' %}"></script>
 </body>
 </html>

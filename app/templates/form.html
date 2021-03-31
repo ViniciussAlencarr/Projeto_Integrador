@@ -17,13 +17,13 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="#">Exibir</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/form">Cadastro</a>
+            <a class="nav-link active" href="/form">Cadastro</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link active" href="/form_User">Criar Usuário</a>
           </li>
         </ul>
         <form class="d-flex">
@@ -34,33 +34,11 @@
     </div>
   </nav>
   <div class="col-8 m-auto pt-4 pb-2 text-center">
-    <form name="form" id="form" action="/create/" method="POST">
+    <form name="form_User" id="form_User" action="/createUser/" method="POST">
       {% csrf_token %}
-      {{form.as_p}}
-      <!--<div class="form-floating mb-3">
-        <p>
-          <label for="id_id_Cliente">Id Cliente:</label>
-          <select name="id_Cliente" id="id_id_Cliente">
-            <option value="" selected="" option>
-          </select>
-        </p>
-      </div>
-      <div class="form-floating mb-3 mt-5">
-        <input type="text" maxlength="40" name="nome_De_Usuario" class="form-control" id="id_nome_De_Usuario" placeholder="name@example.com" required="">
-        <label for="id_nome_De_Usuario">User Name</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="id_senha_Cliente" placeholder="Password" required="">
-        <label for="id_senha_Cliente">Password</label>
-      </div>
-      <div class="form-floating mt-3 ">
-        <input type="email" class="form-control" id="id_email_Cliente" placeholder="Email required="">
-      <label for="id_email_Cliente">Email</label>
-      </div>-->
-      <input type="submit" class="btn btn-success mt-4" value="Cadastrar">
+      {{form_User.as_p}}
+      <input type="submit" class="btn btn-success mt-4" value="Criar usuário">
     </form>
-  </div>
-  
-  
+  </div> 
 </body>
 </html>

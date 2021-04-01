@@ -84,8 +84,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sistema',
         'PORT': '3306',
+<<<<<<< Updated upstream
         'HOST': 'localhost',
         'USER': 'root',
+=======
+        'HOST': 'root',
+>>>>>>> Stashed changes
         'PASSWORD': '',
     }
 }

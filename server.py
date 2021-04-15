@@ -4,6 +4,7 @@ import mysql.connector
 
 url = 'https://www.soawebservices.com.br/restservices/test-drive/serasa/concentre.ashx'
 
+# PEGANDO O EMAIL E A SENHA PARA FAZER A REQUISIÇÃO AO SERASA
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
@@ -12,25 +13,28 @@ mydb = mysql.connector.connect(
 )
 mycursor = mydb.cursor()
 mycursor.execute("SELECT * FROM app_ficha_cadastral")
-myresult = mycursor.fetchone()
+dbResponse = mycursor.fetchone()
 
+# CARREGANDO O TEMPLATE JSON PARA REQUEST
+concent = open('app/requests_Serasa/concentre.json')
+concentreRequest = json.load(concent)
 
+credenciaisRequest = concentreRequest.get("Credenciais")
+credenciaisRequest["Email"] = dbResponse[3]
+credenciaisRequest["Senha"] = dbResponse[1]
 
+# FAZENDO REQUISIÇÃO AO SERASA
+response = requests.post(url=url, json=concentreRequest)
 
-myObj = {
-    "Credenciais": {
-      "Email": '{email}',
-      "Senha": '{password}'.format(email = myresult[1], password = myresult[3])
-    },
-    "Documento": "99.999.999/9999-62 ",
-    "Adicionais": [
-      1,
-      2,
-      3,
-      4
-    ]
-  }
+if response.status_code >= 200 and response.status_code <=299:
+  print('Status Code', response.status_code)
+  print('Reason', response.reason)
+  print('Text', response.text)
+  print('JSON', response.json())
+  jsonResponse = response.json()
+else:
+  print('Status Code', response.status_code)
+  print('Reason', response.reason)
+  print('Text', response.text)
+  #print('JSON', response.json())'''
 
-request = requests.post(url, json=myObj)
-
-print(request.text)

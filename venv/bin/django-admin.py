@@ -1,4 +1,4 @@
-#!/home/vinicius/Documentos/GitHub/Projeto_Integrador/venv/bin/python3
+#!/home/vinicius/Documentos/GitHub/Projeto_Integrador/venv/bin/python
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

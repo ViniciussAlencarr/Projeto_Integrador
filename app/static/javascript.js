@@ -1,6 +1,5 @@
 (function(win, doc) {
     'use-strict';
-
     // verifica se o usuário realmente quer deletar o dado 
     if (doc.querySelector('.btn-del')) {
         let btnDel = doc.querySelectorAll('.btn-del');

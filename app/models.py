@@ -74,7 +74,7 @@ class Endereco_Cliente(models.Model):
 
 class Ficha_Cadastral(models.Model):
     id_Cliente = models.OneToOneField(Cliente, on_delete=models.CASCADE, default=None) # chave estrangeira da classe Cliente
-    senha_Cliente = models.IntegerField()
+    senha_Cliente = models.CharField(max_length=15)
     nome_De_Usuario = models.CharField(max_length=40)
     email_Cliente = models.EmailField()
 

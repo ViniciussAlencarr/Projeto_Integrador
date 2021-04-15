@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name='Ficha_Cadastral',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('senha_Cliente', models.IntegerField()),
+                ('senha_Cliente', models.CharField(max_length=15)),
                 ('nome_De_Usuario', models.CharField(max_length=40)),
                 ('email_Cliente', models.EmailField(max_length=254)),
                 ('id_Cliente', models.OneToOneField(default=None, on_delete=django.db.models.deletion.CASCADE, to='app.cliente')),

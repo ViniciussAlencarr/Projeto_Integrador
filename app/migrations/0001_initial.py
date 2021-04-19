@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('cnpj', models.CharField(max_length=14)),
                 ('estado_Civil', models.CharField(max_length=25)),
                 ('contato_SMS', models.CharField(max_length=11)),
-                ('whatsapp', models.CharField(max_length=20)),
+                ('whatsapp', models.CharField(max_length=11)),
             ],
         ),
     ]

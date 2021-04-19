@@ -1,8 +1,16 @@
 from django.shortcuts import render, redirect
 from app.models import Cliente, Ficha_Cadastral
 from app.forms import Cliente_Form, Ficha_Cadastral_Form
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+def splashScreen(request):
+    data = {}
+    data['form'] = Ficha_Cadastral_Form()
+    return render(request, 'home.html', data)
+    
+@login_required
 def home(request):
     data = {}
     search = request.GET.get('search')
@@ -57,5 +65,13 @@ def update(request, pk):
         form.save()
     return redirect('home')
 
+def login_cliente(request):
+    nome_De_Usuario = request.POST['nome_De_Usuario']
+    senha_Cliente = request.POST['senha_Cliente']
+    cliente = authenticate(request, nome_De_Usuario=nome_De_Usuario, senha_Cliente=senha_Cliente )
+    if (cliente):
+        return redirect('home')
+    else:
+        return redirect('form_User')
 
 

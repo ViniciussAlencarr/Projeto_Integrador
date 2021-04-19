@@ -5,38 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
   <section>
     <div class="container">
       <div class="user signinBx">
         <div class="imgBx">
-          <img class="img" src="../img/flowers.jpg" alt="Flowers"></div>
+          <img class="img" src="../static/img/flowers.jpg" alt="Flowers"></div>
           <div class="formBx">
-            <form>
+            <form method="POST">
+              <!--
+              {% if form.is_authenticated %}
+              {{form.senha_Cliente}}
+              {% else %}
+              {{form.nome_De_Usuario}}
+              {% endif %}-->
               <h2>Sign In</h2>
-              <input type="text" placeholder="Username">
-              <input type="password" placeholder="Pasword">
+              <input placeholder="username" maxlength="40" name="nome_De_Usuario" id="nome_De_Usuario" aria-label="username" type="text">
+              <input placeholder="password" maxlength="15" name="senha_Cliente" id="id_senha_Cliente" aria-label="password" type="password">
               <input type="submit" value="Login">
-              <p class="signup">don't have an account? <a onclick="toggleForm();" href="#">Sign up.</a></p>
+              <p class="signup"><a onclick="toggleForm();" href="#">log in </a> as administrator</p>
             </form>
           </div>
       </div>
-      
       <div class="user signupBx">
           <div class="formBx">
-            <form>
-              <h2>Create an account</h2>
-              <input type="text" placeholder="Username">
-              <input type="text" placeholder="Email Address">
-              <input type="password" placeholder="Create Pasword">
-              <input type="password" placeholder="Confimr Pasword">
+            <form method="POST">
+              <h2>Sign In</h2>
+              <input type="text" placeholder="Adm Username">
+              <input type="password" placeholder="Adm Password">
               <input type="submit" value="Sign Up">
-              <p class="signup">Already have an account? <a onclick="toggleForm();" href="#">Sign in.</a></p>
+              <p class="signup">Login as a customer? <a onclick="toggleForm();" href="#">Sign in.</a></p>
+              <p class="signup"><a href="#">Forgot password?</a></p>
             </form>
           </div>
-          <div class="imgBx"><img class="img" src="../img/flowers2.jpg" alt="Flowers"></div>
+          <div class="imgBx"><img class="img" src="../static/img/flowers2.jpg" alt="Flowers"></div>
       </div>
     </div>
   </section>

@@ -14,27 +14,24 @@
         <div class="imgBx">
           <img class="img" src="../static/img/flowers.jpg" alt="Flowers"></div>
           <div class="formBx">
-            <form method="POST">
-              <!--
-              {% if form.is_authenticated %}
-              {{form.senha_Cliente}}
-              {% else %}
-              {{form.nome_De_Usuario}}
-              {% endif %}-->
+            <form action="/login" method="POST">
+              {% csrf_token %}
               <h2>Sign In</h2>
-              <input placeholder="username" maxlength="40" name="nome_De_Usuario" id="nome_De_Usuario" aria-label="username" type="text">
-              <input placeholder="password" maxlength="15" name="senha_Cliente" id="id_senha_Cliente" aria-label="password" type="password">
+              <input placeholder="Username" maxlength="40" name="username_cliente" type="text">
+              <input placeholder="Password" maxlength="15" name="password_cliente" type="password"> 
               <input type="submit" value="Login">
-              <p class="signup"><a onclick="toggleForm();" href="#">log in </a> as administrator</p>
+              <p class="signup"><a  onclick="toggleForm();" href="#">log in </a> as administrator</p>
+              <p class="signup"><a href="/form">Don't have an account?</a></p>
             </form>
           </div>
       </div>
       <div class="user signupBx">
           <div class="formBx">
-            <form method="POST">
+            <form method="POST" action="/login_adm/">
+              {% csrf_token %}
               <h2>Sign In</h2>
-              <input type="text" placeholder="Adm Username">
-              <input type="password" placeholder="Adm Password">
+              <input placeholder="Adm Username" maxlength="40" name="username_adm" type="text">
+              <input placeholder="Adm Password" maxlength="15" name="password_adm" type="password">
               <input type="submit" value="Sign Up">
               <p class="signup">Login as a customer? <a onclick="toggleForm();" href="#">Sign in.</a></p>
               <p class="signup"><a href="#">Forgot password?</a></p>

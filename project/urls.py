@@ -15,17 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app.views import splashScreen, home, form, form_User, create, createUser, delete, view, update, edit, login_cliente
+from django.conf.urls import url
+from app.views import home, splashScreen, cadastro, form, form_User, create, createUser, delete, view, update, edit, login_cliente, logout_cliente, login_adm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
+    url('', include('app.urls')),
     path('', splashScreen, name='splashScreen'),
+    path('accounts/', include('allauth.urls')),
     path('home/', home, name='home'),
     path('form/', form, name='form'),
     path('form_User/', form_User, name='form_User'),
     path('create/', create, name='create'),
-    path('login_Cliente/', login_cliente, name='login_cliente'),
+    path('login_cliente/', login_cliente, name='login_cliente'),
+    path('login_adm/', login_adm, name='login_adm'),
+    path('logout_cliente/', logout_cliente, name='logout_cliente'),
     path('createUser/', createUser, name='createUser'),
     path('delete/<int:pk>/', delete, name='delete'),
     path('view/<int:pk>/', view, name='view'),

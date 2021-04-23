@@ -19,7 +19,7 @@ def cadastro(request):
     return render(request, 'clienteSide/fichaCadastral.html', context)
 
 @login_required
-def home(request):
+def homeAdm(request):
     data = {}
     search = request.GET.get('search')
     if (search):
@@ -28,9 +28,12 @@ def home(request):
         data['db'] = Cliente.objects.all()
     return render(request, 'adm/admHomeScreen.html', data)
 
+def homeCliente(request):
+    return render(request, 'clienteSide/clienteHomeScreen.html')
 
 def form(request):
     data = {}
+    data['db'] = Cliente.objects.all()
     data['form'] = Ficha_Cadastral_Form()
     return render(request, 'clienteSide/cadastro.html', data)
 
@@ -44,17 +47,17 @@ def create(request):
     form = Ficha_Cadastral_Form(request.POST or None)
     if form.is_valid():
         form.save()
-    return redirect('home')
+    return redirect('homeAdm')
 
 def createUser(request):
     form = Cliente_Form(request.POST or None)
     if form.is_valid():
         form.save()
-    return redirect('home')
+    return redirect('homeAdm')
 
 def delete(request, pk):
     db = Cliente.objects.get(pk = pk).delete()
-    return redirect('home')
+    return redirect('homeAdm')
 
 def view(request, pk):
     data = {}
@@ -73,14 +76,14 @@ def update(request, pk):
     form = Cliente_Form(request.POST or None, instance=data['db'])
     if (form.is_valid()):
         form.save()
-    return redirect('home')
+    return redirect('homeAdm')
 
 def login_cliente(request):
     if request.method == 'POST':
         user = authenticate(username=request.POST['username_cliente'], password=request.POST['password_cliente'])
         if user is not None:
             login(request, user)
-            return redirect('/home')
+            return redirect('/cliente')
     return render(request, 'loginScreen.html' )
 
 def login_adm(request):
@@ -88,7 +91,7 @@ def login_adm(request):
         adm = authenticate(username=request.POST['username_adm'], password=request.POST['password_adm'])
         if adm is not None:
             login(request, adm)
-            return redirect('/home')
+            return redirect('/adm')
     return render(request, 'loginScreen.html')
     
 def logout_cliente(request):

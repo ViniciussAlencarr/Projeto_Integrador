@@ -5,6 +5,14 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+.content {
+    max-width: max-content;
+}   
+
+div .title {
+    text-transform: uppercase;
+    font-size: 30px;
+}
 section {
     min-height: 100vh;
     background: #557085;

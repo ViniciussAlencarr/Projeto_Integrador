@@ -6,18 +6,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cliente | Ficha cadastral</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../static/style.css">
 </head>
 <body>
   {% load crispy_forms_tags %}
-  <div class="col-8 m-auto pt-4 pb-2 text-center">
-    <h1>Ficha Cadastral</h1>
+  <div class="content col-8 m-auto pt-4 pb-2 text-center">
+    <h1 class="title">Ficha Cadastral</h1>
     <div id="result"></div>
     <form name="form_User" id="form_User" action="/createUser/" method="POST">
       {% csrf_token %}
-      {{form_User|crispy}}
-      <input type="submit" onclick="prosseguir()" class="btn btn-success mt-4" value="Cadastrar">
-    </form>
-  </div>
+
+      <div class="form-floating mb-3">
+        <div id="div_id_nome" class="form-group">
+          <label for="id_nome" class=" requiredField">Nome</label>
+          <div class="">
+            <input type="text" name="nome" maxlength="20" class="textinput textInput form-control" required="" id="id_nome">
+          </div>
+        </div>
+      </div>
+      <div class="form-floating mb-3">
+        
+      </div>
+      <div class="form-floating mb-3">
+        
+      </div>
+      <div class="form-floating mb-3">
+       
+      </div>
+      <div class="form-floating mb-3">
+
+      </div>
+      <div class="form-floating">
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+      
+      <div id="div_id_sobrenome" class="form-group">
+        <label for="id_sobrenome" class=" requiredField">Sobrenome</label>
+        <div class="">
+          <input type="text" name="sobrenome" maxlength="20" class="textinput textInput form-control" required="" id="id_sobrenome">
+        </div>
+      </div>
+      <div id="div_id_cnpj" class="form-group">
+        <label for="id_cnpj" class=" requiredField">CNPJ</label>
+        <div class="">
+          <input type="text" name="cnpj" maxlength="14" class="textinput textInput form-control" required="" id="id_cnpj">
+        </div>
+      </div>
+      <div id="div_id_estado_Civil" class="form-group">
+        <label for="id_estado_Civil" class=" requiredField">Estado Civil</label>
+        <div class="">
+          <input type="text" name="estado_Civil" maxlength="25" class="textinput textInput form-control" required="" id="id_estado_Civil">
+        </div>
+      </div>
+      <div id="div_id_contato_SMS" class="form-group">
+        <label for="id_contato_SMS" class=" requiredField">Telefone</label>
+        <div class="">
+          <input type="text" name="contato_SMS" maxlength="11" class="textinput textInput form-control" required="" id="id_contato_SMS">
+        </div>
+      </div>
+      <div id="div_id_whatsapp" class="form-group">
+        <label for="id_whatsapp" class=" requiredField">Whatsapp</label>
+        <div class="">
+          <input type="text" name="whatsapp" maxlength="11" class="textinput textInput form-control" required="" id="id_whatsapp">
+        </div>
+        <input type="submit" onclick="prosseguir()" class="btn btn-success mt-4" value="Cadastrar">
+      </div>
+      
+      </form>
+    </div>
   <style>
     .requiredField {
       text-align: left;

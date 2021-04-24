@@ -40,4 +40,5 @@ class Ficha_Cadastral_Form(forms.ModelForm):
         model = Ficha_Cadastral
         fields = '__all__'
 
+
     

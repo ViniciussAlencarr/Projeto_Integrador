@@ -15,7 +15,7 @@
     <div id="result"></div>
     <form name="form_User" id="form_User" action="/createUser/" method="POST">
       {% csrf_token %}
-
+<!-- 
       <div class="form-floating mb-3">
         <div id="div_id_nome" class="form-group">
           <label for="id_nome" class=" requiredField">Nome</label>
@@ -81,7 +81,8 @@
           <input type="text" name="whatsapp" maxlength="11" class="textinput textInput form-control" required="" id="id_whatsapp">
         </div>
         <input type="submit" onclick="prosseguir()" class="btn btn-success mt-4" value="Cadastrar">
-      </div>
+      </div> -->
+      {{form_User}}
       
       </form>
     </div>

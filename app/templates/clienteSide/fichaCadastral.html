@@ -13,86 +13,43 @@
   <div class="content col-8 m-auto pt-4 pb-2 text-center">
     <h1 class="title">Ficha Cadastral</h1>
     <div id="result"></div>
-    <form name="form_User" id="form_User" action="/createUser/" method="POST">
+    <form class="formCadastro" method="post">
       {% csrf_token %}
-<!-- 
-      <div class="form-floating mb-3">
-        <div id="div_id_nome" class="form-group">
-          <label for="id_nome" class=" requiredField">Nome</label>
-          <div class="">
-            <input type="text" name="nome" maxlength="20" class="textinput textInput form-control" required="" id="id_nome">
-          </div>
-        </div>
-      </div>
-      <div class="form-floating mb-3">
-        
-      </div>
-      <div class="form-floating mb-3">
-        
-      </div>
-      <div class="form-floating mb-3">
-       
-      </div>
-      <div class="form-floating mb-3">
-
-      </div>
-      <div class="form-floating">
-
-      </div>
-
-
-
-
-
-
-
-
-
-
-
       
-      <div id="div_id_sobrenome" class="form-group">
-        <label for="id_sobrenome" class=" requiredField">Sobrenome</label>
-        <div class="">
-          <input type="text" name="sobrenome" maxlength="20" class="textinput textInput form-control" required="" id="id_sobrenome">
-        </div>
+      <div class="form">
+          {{form_usuario.username.errors}}
+          <label>Nome de usuário</label>
+          {{form_usuario.username}}
       </div>
-      <div id="div_id_cnpj" class="form-group">
-        <label for="id_cnpj" class=" requiredField">CNPJ</label>
-        <div class="">
-          <input type="text" name="cnpj" maxlength="14" class="textinput textInput form-control" required="" id="id_cnpj">
-        </div>
-      </div>
-      <div id="div_id_estado_Civil" class="form-group">
-        <label for="id_estado_Civil" class=" requiredField">Estado Civil</label>
-        <div class="">
-          <input type="text" name="estado_Civil" maxlength="25" class="textinput textInput form-control" required="" id="id_estado_Civil">
-        </div>
-      </div>
-      <div id="div_id_contato_SMS" class="form-group">
-        <label for="id_contato_SMS" class=" requiredField">Telefone</label>
-        <div class="">
-          <input type="text" name="contato_SMS" maxlength="11" class="textinput textInput form-control" required="" id="id_contato_SMS">
-        </div>
-      </div>
-      <div id="div_id_whatsapp" class="form-group">
-        <label for="id_whatsapp" class=" requiredField">Whatsapp</label>
-        <div class="">
-          <input type="text" name="whatsapp" maxlength="11" class="textinput textInput form-control" required="" id="id_whatsapp">
-        </div>
-        <input type="submit" onclick="prosseguir()" class="btn btn-success mt-4" value="Cadastrar">
-      </div> -->
-      {{form_User}}
-      
-      </form>
+      <div class="form">
+        {{form_usuario.email.errors}}
+        <label>Email</label>
+        {{form_usuario.username}}
     </div>
+      <div class="form">
+          {{form_usuario.password1.errors}}
+          <label for="">Senha</label>
+          {{form_usuario.password1}}
+      </div>
+      <div class="form">
+          {{form_usuario.password2.errors}}
+          <label>Confirme sua senha</label>
+          {{form_usuario.password2}}
+      </div>
+      <div class="form-group">
+          <input type="submit" value="Cadastrar" class="btn btn-primary">
+      </div>
+    </form>
+  </div>
   <style>
-    .requiredField {
-      text-align: left;
-      display: flex;
-      padding: 10px;
-      font-weight: bolder;
-      font-size: larger;
+    .formCadastro {
+      align-items: center;
+      justify-content: center;
+      max-width: min-content;
+    }
+
+    .form {
+      margin: 10px;
     }
   </style>  
   <script>

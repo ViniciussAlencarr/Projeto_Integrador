@@ -1,9 +1,9 @@
-from django.conf.urls import url
-from . import views
+from django.urls import path, include
+from .views import *
 
 urlpatterns = [
-    url(r'^cadastro$', views.cadastro, name='cadastro'),
-    url(r'^login$', views.login_cliente, name='login'),
-    url(r'^logout$', views.logout_cliente, name='logout'),
-    url(r'^login_adm$', views.login_adm, name='login_adm'),
+    path('cadastro', cadastro, name="cadastro"),
+    path('login', login_cliente, name='login'),
+    path('logout', logout_cliente, name='logout'),
+    path('login_adm', login_adm, name='login_adm'),
 ]

@@ -16,13 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
-from app.views import homeAdm, homeCliente, splashScreen, cadastro, form, form_User, create, createUser, delete, view, update, edit, login_cliente, logout_cliente, login_adm
+from app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url('', include('app.urls')),
+    path('', include('app.urls')),
     path('', splashScreen, name='splashScreen'),
-    path('accounts/', include('allauth.urls')),
     path('adm/', homeAdm, name='homeAdm'),
     path('cliente/', homeCliente, name='homeCliente'),
     path('form/', form, name='form'),

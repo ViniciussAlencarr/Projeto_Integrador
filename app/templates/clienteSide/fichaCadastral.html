@@ -15,27 +15,52 @@
     <div id="result"></div>
     <form class="formCadastro" method="post">
       {% csrf_token %}
-      
       <div class="form">
-          {{form_usuario.username.errors}}
+          {{form.nome.errors}}
           <label>Nome de usuário</label>
-          {{form_usuario.username}}
+          {{form.nome}}
       </div>
       <div class="form">
-        {{form_usuario.email.errors}}
-        <label>Email</label>
-        {{form_usuario.username}}
+        {{form.sobrenome.errors}}
+        <label>Sobrenome</label>
+        {{form.sobrenome}}
     </div>
       <div class="form">
-          {{form_usuario.password1.errors}}
-          <label for="">Senha</label>
-          {{form_usuario.password1}}
+          {{form.cnpj.errors}}
+          <label for="">CNPJ</label>
+          {{form.cnpj}}
       </div>
       <div class="form">
-          {{form_usuario.password2.errors}}
-          <label>Confirme sua senha</label>
-          {{form_usuario.password2}}
+          {{form.estado_Civil.errors}}
+          <label>Estado Cívil</label>
+          {{form.estado_Civil}}
       </div>
+      <div class="form">
+        {{form.contato_SMS.errors}}
+        <label>SMS</label>
+        {{form.contato_SMS}}
+      </div>
+      <div class="form">
+        {{form.whatsapp.errors}}
+        <label>Whatsapp</label>
+        {{form.whatsapp}}
+      </div>
+      <div class="form">
+        {{form.email_Cliente.errors}}
+        <label>Email</label>
+        {{form.email_Cliente}}
+      </div>
+      <div class="form">
+        {{form.nome_De_Usuario.errors}}
+        <label>Nome de usuário</label>
+        {{form.nome_De_Usuario}}
+      </div>
+      <div class="form">
+        {{form.senha_Cliente.errors}}
+        <label>Senha</label>
+        {{form.senha_Cliente}}
+      </div>
+      
       <div class="form-group">
           <input type="submit" value="Cadastrar" class="btn btn-primary">
       </div>

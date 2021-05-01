@@ -15,7 +15,7 @@
     <div id="result"></div>
     <form class="formCadastro" method="post">
       {% csrf_token %}
-      <div class="form">
+      <!-- <div class="form">
           {{form.nome.errors}}
           <label>Nome de usuário</label>
           {{form.nome}}
@@ -59,7 +59,8 @@
         {{form.senha_Cliente.errors}}
         <label>Senha</label>
         {{form.senha_Cliente}}
-      </div>
+      </div> -->
+      {{form}}
       
       <div class="form-group">
           <input type="submit" value="Cadastrar" class="btn btn-primary">

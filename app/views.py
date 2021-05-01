@@ -7,17 +7,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 # Create your views here.
-def splashScreen(request):
+def splashScreen(request):    
     return render(request, 'loginScreen.html')
 
 def cadastro(request):
     if request.method == "POST":
-        form = Cliente_Form(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('login')
     else:
-        form = Cliente_Form()
+        form = UserCreationForm()
     return render(request, 'clienteSide/fichaCadastral.html', {'form': form})
         
 @login_required
@@ -61,14 +61,27 @@ def update(request, pk):
         form.save()
     return redirect('homeAdm')
 
+def verificacao(nome, senha):
+    cliente = Cliente()
+    verif_nome = cliente.nome_De_Usuario
+    verif_senha = cliente.senha_Cliente
+    if nome != verif_nome and senha != verif_senha:
+        user = User()
+        nameUser = user.username = nome
+        passwordUser = user.password = senha
+        data = Cliente.objects.create(nome_De_Usuario=nameUser, senha_Cliente=passwordUser)
+    return redirect('login')
+
 def login_cliente(request):
     if request.method == 'POST':
+        #pegando dados do formulário do html
         nome = request.POST['username_cliente']
         senha = request.POST['password_cliente']
-        b = Cliente()
-        data = User.objects.create(username=b.nome_De_Usuario, password=b.senha_Cliente)
-        data.save()
-        return redirect('homeCliente')
+        authenticacao = authenticate(username=nome,password=senha)
+        verificacao(nome, senha)
+        if authenticacao is not None:
+            login(request, authenticacao)
+            return redirect('homeCliente')
     return render(request, 'loginScreen.html')
 
 def login_adm(request):

@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class UserModelForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'password', 'email']
+        fields = ['email']
 
 class Cliente_Form(forms.ModelForm):
     class Meta:

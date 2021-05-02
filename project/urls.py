@@ -25,6 +25,7 @@ urlpatterns = [
     path('adm/', homeAdm, name='homeAdm'),
     path('cliente/', homeCliente, name='homeCliente'),
     path('delete/<int:pk>/', delete, name='delete'),
+    path('logout/<int:pk>/', logout_cliente, name='logout'),
     path('view/<int:pk>/', view, name='view'),
     path('update/<int:pk>/', update, name='update'),
     path('edit/<int:pk>/', edit, name='edit'),

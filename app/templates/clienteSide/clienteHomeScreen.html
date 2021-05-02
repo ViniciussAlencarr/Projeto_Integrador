@@ -38,8 +38,8 @@
                       <a class="dropdown-item" href="#">Algo mais aqui</a>
                       <a class="dropdown-item" href="#">Algo mais aqui</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt">Sair</i></a>
-                    </div>
+                      <a class="dropdown-item" href="/logout{% if user.is_authenticated %}/{{db.id}}/{% else %}/{{aux.id}}/{% endif %}"><i class="fas fa-sign-out-alt">Sair</i></a>
+                    </div> 
                   </li>
                 </ul>
               </div>
@@ -47,14 +47,12 @@
           </div>
         </div>
       </nav>
-      {% block content %}
       <div class="col-8 m-auto pt-4 text-center">
         <h1>Bem vindo Cliente ao componente Home</h1>
+        {{db.id}}
       </div>
-      {% endblock %}    
-      
-      <!-- {% load static %}
-      <script src="{% static 'javascript.js' %}"></script> -->
+      {% load static %}
+      <script src="{% static 'javascript.js' %}"></script>
       
        <!-- Dropdown do bootstrap -->
        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

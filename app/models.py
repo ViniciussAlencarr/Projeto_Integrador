@@ -12,6 +12,8 @@ class Cliente(models.Model):
     nome_De_Usuario = models.CharField(max_length=40)
     email_Cliente = models.EmailField()
 
+   
+
 class Emprestimo_Valor(models.Model):
     qtde_Parcelas = models.IntegerField()
 

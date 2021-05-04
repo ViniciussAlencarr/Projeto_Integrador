@@ -12,8 +12,6 @@ class Cliente(models.Model):
     nome_De_Usuario = models.CharField(max_length=40)
     email_Cliente = models.EmailField()
 
-   
-
 class Emprestimo_Valor(models.Model):
     qtde_Parcelas = models.IntegerField()
 
@@ -95,6 +93,7 @@ class Agencia(models.Model):
 class Administrador(models.Model):
     id_Agencia = models.ForeignKey(Agencia, on_delete=models.CASCADE, default=None) # chave estrangeira da classe Agencia
     nome_Adm = models.CharField(max_length=20)
+    senha_Adm = models.CharField(max_length=15)
     id_Cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, default=None) # Chave estrangeira da classe Cliente
 
 class Sistema_Rn(models.Model):

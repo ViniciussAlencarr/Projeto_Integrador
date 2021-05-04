@@ -1,0 +1,183 @@
+*{    
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    list-style: none;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+  body{
+  background: #EEEEEE;
+    height: 100%;
+    width: 100%;
+}
+  nav{
+    background: linear-gradient(to right, #1b2430, #252627);
+    height: 80px;
+    width: 100%;
+  }
+  .logo {
+    padding-top: 15px;
+    width: 150px;   
+    margin-left: 90px;
+  }
+  .menu ul{
+    padding-top: 10px;
+    float: right;
+    margin-right: 90px;
+  }
+  .menu ul li{
+    display: inline-block;
+    padding-top: 20px;
+    line-height: 20px;
+    margin: 0 5px;
+    padding-right:10px;
+  }
+  .menu ul li a{
+    color: #ffff;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .menu a:hover{
+    background-color:#0C5362;
+    transition:.5s;
+  }
+  #divBusca{
+      position: absolute;
+      background-color:azure;
+      border:solid 2px #1B2430;
+      border-radius:10px;
+      width:500px;
+      height:32px;
+      left: 420px; 
+      top: 310px;
+    }  
+    #txtBusca{
+      outline: none;
+      float:left;
+      background-color:transparent;
+      font-size:14px;
+      border:none;
+      color: #EEEEEE;
+      height:27px;
+      width:371px;
+    }  
+    #btnBusca{
+      outline: none;
+      border:none;
+      float:left;
+      font-weight: bold;
+      color: #EEEEEE;
+      height:28px;
+      width:80px;
+      border-radius: 6px;
+      margin-left: 10px;
+      background:#1B2430;
+    }
+  .txtBusca :hover{
+      color: #ffff;
+  } 
+    #divBusca img{
+      float:left;
+      width:30px;
+      margin-left: 5px;
+      height:30px;
+    }
+    .novoCadastroimg{
+      position: absolute;
+      height:20px;
+      width:20px;
+      left: 15px; 
+        top: 5px;          
+    }
+    .novoCadastro{
+      position: absolute;
+      background-color:#1B2430;
+      border:none;
+      border-radius:10px;
+      width:230px;
+      height:32px;
+      left: 550px; 
+      top: 390px;
+    }
+  .novoCadastro a{
+      font-size: 14p;
+      margin-left: 45px;
+      top: 5px;  
+      font-weight: bold;
+      position: absolute;
+      color: #EEEEEE;
+  }
+  .novoCadastro a:hover{
+      color: aliceblue;
+  }
+  #divBusca{
+    position: absolute;
+    background-color:azure;
+    border:solid 2px #1B2430;
+    border-radius:10px;
+    width:500px;
+    height:32px;
+    left: 420px; 
+  top: 150px;
+  }  
+  #txtBusca{
+    outline: none;
+    float:left;
+    background-color:transparent;
+    font-size:14px;
+    border:none;
+    color: #EEEEEE;
+    height:27px;
+    width:371px;
+  }  
+  #btnBusca{
+    outline: none;
+    border:none;
+    float:left;
+    font-weight: bold;
+    color: #EEEEEE;
+    height:28px;
+    width:80px;
+    border-radius: 6px;
+    margin-left: 10px;
+    background:#1B2430;
+  }
+  .txtBusca :hover{
+    color: #ffff;
+  } 
+  #divBusca img{
+    float:left;
+    width:30px;
+    margin-left: 5px;
+    height:30px;
+  }
+
+  table {
+    position: absolute;
+    width:80%;
+    top: 250px;
+    left: 130px;
+  }
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  #t01 tr:nth-child(even) {
+    background-color: #fff;
+  }
+  #t01 tr:nth-child(odd) {
+   background-color: #fff;
+  }
+  #t01 th {
+    background-color:#252627;
+    color: white;
+  }
+

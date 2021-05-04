@@ -7,7 +7,12 @@
 }
 .content {
     max-width: max-content;
-}   
+}  
+
+
+div .colapse .navbar {
+    background-color: #1b2430;
+}
 
 div .title {
     text-transform: uppercase;

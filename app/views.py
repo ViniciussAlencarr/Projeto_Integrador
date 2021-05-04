@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from app.models import Cliente
+from app.models import *
 from app.forms import Cliente_Form, UserModelForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
@@ -36,14 +36,24 @@ def homeAdm(request):
     
     
 def verificacao(nome, senha):
-    cliente = Cliente()
-    verif_nome = cliente.nome_De_Usuario
-    verif_senha = cliente.senha_Cliente
-    if nome != verif_nome and senha != verif_senha:
-        user = User()
-        nameUser = user.username = nome
-        passwordUser = user.password = senha
-        data = Cliente.objects.create(nome_De_Usuario=nameUser, senha_Cliente=passwordUser)
+    if (nome == 'nomeAdm' and senha == 'senhaAdm'):
+        adm = Administrador()
+        verif_nome_adm = adm.nome_Adm
+        verif_senha_adm = adm.senha_Adm
+        if nome != verif_nome_adm and senha != verif_senha_adm:
+            user = User()
+            nameUser = user.username = nome
+            passwordUser = user.password = senha
+            data = Administrador.objects.create(nome_Adm=nameUser, senha_Adm=passwordUser)
+    else:
+        cliente = Cliente()
+        verif_nome = cliente.nome_De_Usuario
+        verif_senha = cliente.senha_Cliente
+        if nome != verif_nome and senha != verif_senha:
+            user = User()
+            nameUser = user.username = nome
+            passwordUser = user.password = senha
+            data = Cliente.objects.create(nome_De_Usuario=nameUser, senha_Cliente=passwordUser)
     return redirect('login')
 
 def login_cliente(request):
@@ -103,9 +113,13 @@ def update(request, pk):
 
 def login_adm(request):
     if request.method == 'POST':
-        adm = authenticate(username=request.POST['username_adm'], password=request.POST['password_adm'])
-        if adm is not None:
-            login(request, adm)
+        #pegando dados do formulário do html
+        nomeAdm = request.POST['username_adm']
+        senhaPassword = request.POST['password_adm']
+        authenticacao = authenticate(username=nomeAdm,password=senhaPassword)
+        verificacao(nomeAdm, senhaPassword)
+        if authenticacao is not None:
+            login(request, authenticacao)
             return redirect('homeAdm')
     return render(request, 'loginScreen.html')
 

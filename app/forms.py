@@ -15,6 +15,10 @@ class Cliente_Form(forms.ModelForm):
         model = Cliente
         fields = '__all__' # indica que todos os campos do model serão utilizados
     
+class Agencia_Form(forms.ModelForm):
+    class Meta:
+        model = Agencia
+        fields = '__all__'
 
 
 

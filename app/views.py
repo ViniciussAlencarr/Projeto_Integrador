@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from app.models import *
-from app.forms import Cliente_Form, UserModelForm
+from app.forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.decorators import login_required
@@ -27,6 +27,7 @@ def cadastro(request):
 @login_required
 def homeAdm(request):
     data = {}
+    data['db_adm'] = Administrador.objects.order_by('id')[0]
     search = request.GET.get('search')
     if (search):
         data['db'] = Cliente.objects.filter(nome__icontains = search)
@@ -34,26 +35,15 @@ def homeAdm(request):
         data['db'] = Cliente.objects.all()
     return render(request, 'adm/admHomeScreen.html', data)
     
-    
 def verificacao(nome, senha):
-    if (nome == 'nomeAdm' and senha == 'senhaAdm'):
-        adm = Administrador()
-        verif_nome_adm = adm.nome_Adm
-        verif_senha_adm = adm.senha_Adm
-        if nome != verif_nome_adm and senha != verif_senha_adm:
-            user = User()
-            nameUser = user.username = nome
-            passwordUser = user.password = senha
-            data = Administrador.objects.create(nome_Adm=nameUser, senha_Adm=passwordUser)
-    else:
-        cliente = Cliente()
-        verif_nome = cliente.nome_De_Usuario
-        verif_senha = cliente.senha_Cliente
-        if nome != verif_nome and senha != verif_senha:
-            user = User()
-            nameUser = user.username = nome
-            passwordUser = user.password = senha
-            data = Cliente.objects.create(nome_De_Usuario=nameUser, senha_Cliente=passwordUser)
+    cliente = Cliente()
+    verif_nome = cliente.nome_De_Usuario
+    verif_senha = cliente.senha_Cliente
+    if nome != verif_nome and senha != verif_senha:
+        user = User()
+        nameUser = user.username = nome
+        passwordUser = user.password = senha
+        data = Cliente.objects.create(nome_De_Usuario=nameUser, senha_Cliente=passwordUser)
     return redirect('login')
 
 def login_cliente(request):
@@ -110,14 +100,20 @@ def update(request, pk):
         form.save()
     return redirect('homeAdm')
 
+def verificacao_adm(nomeAdm, senhaAdm):
+    user = User()
+    nameUser = user.username = nomeAdm
+    passwordUser = user.password = senhaAdm
+    data = Administrador.objects.create(nome_Adm=nameUser, senha_Adm=passwordUser)
+    return redirect('login')
 
 def login_adm(request):
     if request.method == 'POST':
         #pegando dados do formulário do html
         nomeAdm = request.POST['username_adm']
-        senhaPassword = request.POST['password_adm']
-        authenticacao = authenticate(username=nomeAdm,password=senhaPassword)
-        verificacao(nomeAdm, senhaPassword)
+        senhaAdm = request.POST['password_adm']
+        authenticacao = authenticate(username=nomeAdm,password=senhaAdm)
+        verificacao_adm(nomeAdm, senhaAdm)
         if authenticacao is not None:
             login(request, authenticacao)
             return redirect('homeAdm')
@@ -127,6 +123,13 @@ def login_adm(request):
 def logout_cliente(request, pk):
     db = Cliente.objects.get(pk = pk)
     db.delete()
+    logout(request)
+    return redirect('login')
+
+@login_required    
+def logout_adm(request, pk):
+    db_adm = Administrador.objects.get(pk = pk)
+    db_adm.delete()
     logout(request)
     return redirect('login')
 

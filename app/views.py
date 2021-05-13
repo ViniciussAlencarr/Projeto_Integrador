@@ -133,4 +133,13 @@ def logout_adm(request, pk):
     logout(request)
     return redirect('login')
 
-    
+@login_required
+def solicitacoes(request):
+    data = {}
+    data['db'] = Emprestimo.objects.all()
+    data['db_'] = Emprestimo_Valor.objects.all()
+    data['form'] = Emprestimo_Form(request.POST or None)
+    data['valor'] = Emprestimo_Valor_Form(request.POST or None)
+    return render(request, 'clienteSide/solicitacoes.html', data)
+
+

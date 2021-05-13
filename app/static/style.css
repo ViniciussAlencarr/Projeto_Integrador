@@ -8,7 +8,32 @@
 .content {
     max-width: max-content;
 }  
+/* .cde .ss {
+    margin-left: 0%;
+    background-color: red;
+} */
 
+.cde {
+    position: absolute;
+    background-color: #212529;
+    margin-left: 70%;
+    color: #fff;
+    width: 350px;
+    height: 250px;
+    padding-top: 10px;
+    border-radius: 10px;
+}
+
+.divBtn {
+    position: absolute;
+    margin-left: 957px;
+    margin-top: 20%;
+}
+
+/* .cde :hover {
+    transition: 0.5s;
+    margin-left: -100%;
+} */
 
 div .colapse .navbar {
     background-color: #1b2430;

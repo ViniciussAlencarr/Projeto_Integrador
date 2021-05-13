@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('data_Solicitacao', models.DateField()),
-                ('id_Cliente', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='app.cliente')),
+                ('id_Cliente', models.ForeignKey(null=True,default=None, on_delete=django.db.models.deletion.CASCADE, to='app.cliente')),
                 ('valor', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='app.emprestimo_valor')),
             ],
         ),

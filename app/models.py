@@ -1,8 +1,10 @@
 from django.db import models
+<<<<<<< HEAD
 from datetime import date
 from django.db.models.fields import DateTimeField, DecimalField, IntegerField
+=======
+>>>>>>> parent of 6a9b5d59 (criando a interface de solicitaçoes de emprestimo)
 
-data_atual = date.today()
 # Create your models here.
 class Cliente(models.Model):
     nome = models.CharField(max_length=20)
@@ -15,12 +17,22 @@ class Cliente(models.Model):
     nome_De_Usuario = models.CharField(max_length=40)
     email_Cliente = models.EmailField()
 
+<<<<<<< HEAD
 class Emprestimo(models.Model):
     situacao = models.CharField(max_length=40)
     qtde_Parcelas = models.IntegerField(max_length=2)
     valor = models.IntegerField()
     valor_unitario = DecimalField(default=0.00, max_digits=60, decimal_places=60)
     data_Solicitacao = DateTimeField(auto_now=True)
+=======
+class Emprestimo_Valor(models.Model):
+    qtde_Parcelas = models.IntegerField()
+
+class Emprestimo(models.Model):
+    id_Cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, default=None) # Chave estrangeira da classe Cliente
+    valor = models.ForeignKey(Emprestimo_Valor, on_delete=models.CASCADE, default=None) # Chave estrangeira da classe Emprestimo_Valor
+    data_Solicitacao = models.DateField()
+>>>>>>> parent of 6a9b5d59 (criando a interface de solicitaçoes de emprestimo)
 
 class Pagamento(models.Model):
     form_Pag = models.CharField(max_length=20)
@@ -102,6 +114,7 @@ class Sistema_Rn(models.Model):
     id_Cliente = models.OneToOneField(Cliente, on_delete=models.CASCADE, default=None) # chave estrangeira da classe Cliente
     id_Resultado = models.ForeignKey(Resultado, on_delete=models.CASCADE, default=None) # chave estrangeira da classe Resultado
     id_Agencia = models.OneToOneField(Agencia, on_delete=models.CASCADE, default=None) # chave estrangeira da classe Agencia 
+
 
 class Localidade_Cidade(models.Model):
     id_Estado = models.ForeignKey(Localidade_Estado, on_delete=models.CASCADE, default=None) # chave estrangeira da classe Localidade_Estado

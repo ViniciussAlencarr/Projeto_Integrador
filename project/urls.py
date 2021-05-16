@@ -29,6 +29,5 @@ urlpatterns = [
     path('update/<int:pk>/', update, name='update'),
     path('edit/<int:pk>/', edit, name='edit'),
     path('view/<int:pk>/', view, name='view'),
-    path('cliente/solicitacoes/', solicitacoes, name='solicitacoes'),
    
 ]

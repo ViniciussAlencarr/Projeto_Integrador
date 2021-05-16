@@ -8,11 +8,8 @@
 .content {
     max-width: max-content;
 }  
-/* .cde .ss {
-    margin-left: 0%;
-    background-color: red;
-} */
 
+<<<<<<< HEAD
 .cde {
     position: absolute;
     background-color: #212529;
@@ -108,6 +105,8 @@
     transition: 0.5s;
     margin-left: -100%;
 } */
+=======
+>>>>>>> parent of 6a9b5d59 (criando a interface de solicitaçoes de emprestimo)
 
 div .colapse .navbar {
     background-color: #1b2430;

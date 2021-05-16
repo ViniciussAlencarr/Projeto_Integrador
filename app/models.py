@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import date
-from django.db.models.fields import DateTimeField, IntegerField
+from django.db.models.fields import DateTimeField, DecimalField, IntegerField
 
 data_atual = date.today()
 # Create your models here.
@@ -15,11 +15,11 @@ class Cliente(models.Model):
     nome_De_Usuario = models.CharField(max_length=40)
     email_Cliente = models.EmailField()
 
-class Emprestimo_Valor(models.Model):
-    qtde_Parcelas = models.IntegerField(max_length=2)
-
 class Emprestimo(models.Model):
+    situacao = models.CharField(max_length=40)
+    qtde_Parcelas = models.IntegerField(max_length=2)
     valor = models.IntegerField()
+    valor_unitario = DecimalField(default=0.00, max_digits=60, decimal_places=60)
     data_Solicitacao = DateTimeField(auto_now=True)
 
 class Pagamento(models.Model):

@@ -1,3 +1,4 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from app.models import *
 from app.forms import *
@@ -137,9 +138,12 @@ def logout_adm(request, pk):
 def solicitacoes(request):
     data = {}
     data['db'] = Emprestimo.objects.all()
-    data['db_'] = Emprestimo_Valor.objects.all()
-    data['form'] = Emprestimo_Form(request.POST or None)
-    data['valor'] = Emprestimo_Valor_Form(request.POST or None)
+    data['form'] = Emprestimo_Form(request.POST)
+    if data['form'].is_valid():
+        if data['valor'].is_valid():
+            data['valor'].save()
+            data['form'].save()
+    else:
+        form = Emprestimo_Form()
     return render(request, 'clienteSide/solicitacoes.html', data)
-
-
+""" {'form': data['form'],'valor':data['valor'],'db':data['db'],'db_':data['db_']} """

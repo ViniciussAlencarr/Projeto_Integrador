@@ -1,9 +1,13 @@
 from django.db import models
 <<<<<<< HEAD
 from datetime import date
+<<<<<<< HEAD
 from django.db.models.fields import DateTimeField, DecimalField, IntegerField
 =======
 >>>>>>> parent of 6a9b5d59 (criando a interface de solicitaçoes de emprestimo)
+=======
+from django.db.models.fields import DateTimeField, IntegerField
+>>>>>>> parent of 83e3c6e4 (Finalizando a interface de solicitaçoes de emprestimo. Removendo a tabela emprestimo_valor e inserindo-a dentro da tabela emprestimo)
 
 # Create your models here.
 class Cliente(models.Model):
@@ -18,11 +22,16 @@ class Cliente(models.Model):
     email_Cliente = models.EmailField()
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 class Emprestimo(models.Model):
     situacao = models.CharField(max_length=40)
+=======
+class Emprestimo_Valor(models.Model):
+>>>>>>> parent of 83e3c6e4 (Finalizando a interface de solicitaçoes de emprestimo. Removendo a tabela emprestimo_valor e inserindo-a dentro da tabela emprestimo)
     qtde_Parcelas = models.IntegerField(max_length=2)
+
+class Emprestimo(models.Model):
     valor = models.IntegerField()
-    valor_unitario = DecimalField(default=0.00, max_digits=60, decimal_places=60)
     data_Solicitacao = DateTimeField(auto_now=True)
 =======
 class Emprestimo_Valor(models.Model):

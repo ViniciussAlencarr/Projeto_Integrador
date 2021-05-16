@@ -26,6 +26,11 @@ class Emprestimo_Form(forms.ModelForm):
         model = Emprestimo
         fields = '__all__'
 
+class Emprestimo_Valor_Form(forms.ModelForm):
+    class Meta:
+        model = Emprestimo_Valor
+        fields = '__all__'
+
 
 =======
 >>>>>>> parent of 6a9b5d59 (criando a interface de solicitaçoes de emprestimo)

@@ -24,6 +24,80 @@
     border-radius: 10px;
 }
 
+.toggle {
+    border-radius: 20px;
+    position: fixed;
+    top: 10px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: #212529 url(img/75519.png);
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    z-index: 1000;
+
+}
+
+.sss {
+    position: absolute;
+    top: 0;
+    right: 30px;
+    width: calc(100% - 70px);
+    height: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 100;
+    color: #fff;
+}
+.sss {
+    position: fixed;
+    background-color: rgb(0, 0, 0);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    padding: 40px;
+    color: #fff;
+    z-index: 100;
+    border: 2px 2px 2px white;
+}
+.sss.active,.toggle.active {
+    right: -100%;
+} 
+
+.sss form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.sss form p {
+    list-style: none;
+}
+.sss form p input {
+    color: #212529;
+    text-decoration: none;
+    font-size: 1em;
+    margin: 10px;
+    transition: 0.5s;
+
+}
+.sss:hover,.toggle:hover {
+    background-color: #212529;
+}
+.divForm{
+    /* margin-left: 25%;
+    margin-top: 5%; */
+    transition: 0.5s;
+    width: 671px;
+    height: 500px;
+    border-radius: 10px;
+    background: #212529;
+}
+
 .divBtn {
     position: absolute;
     margin-left: 957px;

@@ -134,6 +134,7 @@ def logout_adm(request, pk):
     logout(request)
     return redirect('login')
 
+<<<<<<< HEAD
 @login_required
 def solicitacoes(request):
     data = {}
@@ -147,3 +148,6 @@ def solicitacoes(request):
         form = Emprestimo_Form()
     return render(request, 'clienteSide/solicitacoes.html', data)
 """ {'form': data['form'],'valor':data['valor'],'db':data['db'],'db_':data['db_']} """
+=======
+    
+>>>>>>> parent of 6a9b5d59 (criando a interface de solicitaçoes de emprestimo)

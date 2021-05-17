@@ -16,7 +16,6 @@ class Cliente(models.Model):
     email_Cliente = models.EmailField()
 
 class Emprestimo(models.Model):
-    id_Cliente = models.ForeignKey(Cliente, null=True, on_delete=models.CASCADE, default=None) # Chave estrangeira da classe Cliente
     valor = models.IntegerField()
     data_Solicitacao = models.DateField()
     qtde_Parcelas = models.IntegerField()

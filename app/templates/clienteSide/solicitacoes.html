@@ -62,12 +62,15 @@
             <th scope="row">Situação</th>
           </tr>
           {% for dbs in db %}
-          <th scope="row">{{dbs.id}}</th>
-          <td>{{dbs.data_Solicitacao}}</td>
-          <td>{{dbs.valor}}</td>
-          <td>{{dbs.qtde_Parcelas}}</td>
-          <td>{{dbs.valor_unitario}}</td>
-          <td>{{dbs.situacao}}</td>
+          <tr>
+
+            <th scope="row">{{dbs.id}}</th>
+            <td>{{dbs.data_Solicitacao}}</td>
+            <td>{{dbs.valor}}</td>
+            <td>{{dbs.qtde_Parcelas}}</td>
+            <td>{{dbs.valor_unitario}}</td>
+            <td>{{dbs.situacao}}</td>
+          </tr>
           {% endfor %}
       </table>
       {{cliente.pk}}
@@ -85,7 +88,7 @@
     <div class="sss">
       <div onclick="toggleMenu();" class="toggle"></div>
       <h3 style="padding: 10px;">SOLICITE UM EMPRÉSTIMO</h3>
-      <form method="post" action="">
+      <form id="forms" method="post" action="">
         {% csrf_token %}
         {{form}}
         <input type="submit" value="Solicitar" style="font-weight: 500;margin: 5px;" class="btn btn-outline-light" value="Solicitar Empréstimo"> 

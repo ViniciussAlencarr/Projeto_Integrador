@@ -19,7 +19,7 @@ from django.conf.urls import url
 from app.views import *
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+path('admin/', admin.site.urls),
     path('', include('app.urls')),
     path('', splashScreen, name='splashScreen'),
     path('adm/', homeAdm, name='homeAdm'),
@@ -29,5 +29,5 @@ urlpatterns = [
     path('update/<int:pk>/', update, name='update'),
     path('edit/<int:pk>/', edit, name='edit'),
     path('view/<int:pk>/', view, name='view'),
-   
+    path('cliente/solicitacoes/', solicitacoes, name='solicitacoes'),
 ]

@@ -1,13 +1,7 @@
 from django.db import models
-<<<<<<< HEAD
 from datetime import date
-<<<<<<< HEAD
 from django.db.models.fields import DateTimeField, DecimalField, IntegerField
-=======
->>>>>>> parent of 6a9b5d59 (criando a interface de solicitaçoes de emprestimo)
-=======
 from django.db.models.fields import DateTimeField, IntegerField
->>>>>>> parent of 83e3c6e4 (Finalizando a interface de solicitaçoes de emprestimo. Removendo a tabela emprestimo_valor e inserindo-a dentro da tabela emprestimo)
 
 # Create your models here.
 class Cliente(models.Model):
@@ -21,27 +15,13 @@ class Cliente(models.Model):
     nome_De_Usuario = models.CharField(max_length=40)
     email_Cliente = models.EmailField()
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 class Emprestimo(models.Model):
-    situacao = models.CharField(max_length=40)
-=======
-class Emprestimo_Valor(models.Model):
->>>>>>> parent of 83e3c6e4 (Finalizando a interface de solicitaçoes de emprestimo. Removendo a tabela emprestimo_valor e inserindo-a dentro da tabela emprestimo)
-    qtde_Parcelas = models.IntegerField(max_length=2)
-
-class Emprestimo(models.Model):
+    id_Cliente = models.ForeignKey(Cliente, null=True, on_delete=models.CASCADE, default=None) # Chave estrangeira da classe Cliente
     valor = models.IntegerField()
-    data_Solicitacao = DateTimeField(auto_now=True)
-=======
-class Emprestimo_Valor(models.Model):
-    qtde_Parcelas = models.IntegerField()
-
-class Emprestimo(models.Model):
-    id_Cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, default=None) # Chave estrangeira da classe Cliente
-    valor = models.ForeignKey(Emprestimo_Valor, on_delete=models.CASCADE, default=None) # Chave estrangeira da classe Emprestimo_Valor
     data_Solicitacao = models.DateField()
->>>>>>> parent of 6a9b5d59 (criando a interface de solicitaçoes de emprestimo)
+    qtde_Parcelas = models.IntegerField()
+    valor_unitario = models.IntegerField()
+    situacao = models.CharField(max_length=40)
 
 class Pagamento(models.Model):
     form_Pag = models.CharField(max_length=20)

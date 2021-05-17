@@ -1,5 +1,5 @@
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from app.models import *
 from app.forms import *
 from django.contrib.auth import authenticate, login, logout
@@ -134,15 +134,13 @@ def logout_adm(request, pk):
     logout(request)
     return redirect('login')
 
+
 @login_required
 def solicitacoes(request):
     data = {}
     data['db'] = Emprestimo.objects.all()
-    data['cliente'] = Cliente.objects.order_by('id')[0]
     data['form'] = Emprestimo_Form(request.POST)
-    f = Emprestimo_Form()
     if data['form'].is_valid():
-        f.save()
         data['form'].save()
     else:
         form = Emprestimo_Form()

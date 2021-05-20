@@ -145,3 +145,8 @@ def solicitacoes(request):
     else:
         form = Emprestimo_Form()
     return render(request, 'clienteSide/solicitacoes.html', data) 
+
+
+@login_required
+def docs(request):
+    return render(request, 'clienteSide/documentos.html')

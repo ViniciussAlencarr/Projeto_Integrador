@@ -146,7 +146,12 @@ def solicitacoes(request):
         form = Emprestimo_Form()
     return render(request, 'clienteSide/solicitacoes.html', data) 
 
-
 @login_required
 def docs(request):
-    return render(request, 'clienteSide/documentos.html')
+    data = {}
+    data['cliente'] = Cliente.objects.all()
+    """ data['form'] = Formulario_Form(request.POST or None) """
+    """ if data['form'].is_valid(): """
+    """     data['form'].save() """
+    """     return redirect('docs') """
+    return render(request, 'clienteSide/documentos.html', data)

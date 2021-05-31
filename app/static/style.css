@@ -13,11 +13,103 @@
     background-color: red;
 } */
 
-.contentSolic {
+.content-top {
+    font-weight: 600;
+    margin-left: 5%;
+    margin-top: 2%;
 }
-.docs {
 
+.div_content {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 30px;
+    width: calc(100% - 70px);
+    justify-content: center;
+    align-items: center;
+    font-weight: 100;
+    color: #fff;
+    background-color: rgb(0, 0, 0);
+    transition: 0.5s;
+    padding: 40px;
+    z-index: 100;
+    border: 2px 2px 2px white;
 }
+
+.div_content.active,.toggle.active {
+    right: 100%;
+    height: auto;
+} 
+
+.div_content form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.div_content form p {
+    list-style: none;
+}
+
+.div_content form p input {
+    color: #212529;
+    text-decoration: none;
+    font-size: 1em;
+    margin: 10px;
+    transition: 0.5s;
+}
+
+.toggle {
+    border-radius: 20px;
+    position: fixed;
+    top: 0px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: #212529 url(img/75519.png);
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.div_content:hover,.toggle:hover {
+    background-color: #212529;
+}
+
+.list-group {
+    margin-top: 10px;
+    transition: 0.5s;
+}
+.list-group :hover {
+    transition: 0.5s;
+    color: #fff;
+    background-color: #212529;
+}
+
+.asb {
+    float: left;
+    display: block;
+    margin-left: 5%;
+    margin-right: 50%;
+    margin-top: 5%;    
+}
+
+.div-content {
+    margin-right: 5%;
+    position: absolute;
+    margin-left: 50%;
+    margin-top: 5%;
+    text-align: center;
+}
+.div-content h3 {
+    margin-bottom: 2%;
+    font-weight: 600;
+}
+
+
 .cde {
     position: absolute;
     background-color: #212529;
@@ -29,21 +121,6 @@
     border-radius: 10px;
 }
 
-.toggle {
-    border-radius: 20px;
-    position: fixed;
-    top: 10px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: #212529 url(img/75519.png);
-    background-size: 30px;
-    background-position: center;
-    background-repeat: no-repeat;
-    cursor: pointer;
-    z-index: 1000;
-
-}
 
 .sss {
     position: absolute;

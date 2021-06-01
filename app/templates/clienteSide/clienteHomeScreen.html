@@ -49,11 +49,11 @@
           </div>
         </div>
       </nav>
-      {% block content %}
       <div class="col-8 m-auto pt-4 text-center aux">
+        {% block content %}
         <h1>Bem vindo Cliente ao componente Home</h1>
+        {% endblock %}
       </div>
-      {% endblock %}
       {% load static %}
       <script src="{% static 'javascript.js' %}"></script>
       

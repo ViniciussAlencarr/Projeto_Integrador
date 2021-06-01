@@ -1,51 +1,18 @@
 {% extends 'clienteSide/clienteHomeScreen.html' %}
 {% block title %}Cliente | Documentação{% endblock %}
 {% block content %}
-<div class="content-top">
-  <p>Cliente: {{cliente.id}}</p>
-  <p>CNPJ: </p>
-</div>
-<div class="asb">
-    <form method="GET" class="d-flex">
+<div class="contentSolic">
+    <h1>Hello World!</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam enim esse quibusdam fuga voluptas! Sed ab saepe ad voluptatum. Ducimus fugiat, recusandae ex itaque cumque nesciunt dicta veniam. Labore, nostrum.</p>
+    <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-dark" type="submit">Search</button>
+        <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-      {% if db %}
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
-      </ul>
-      {% else %}
-      {% endif %}
-      <p style="margin-top: 10%;">
-        Nenhum dado encontrado...</br>Parece que você ainda não preencheu o formulário.
-
-      </p>
-      <input style="width: 100%; font-weight: 400; margin-top: 0%;" class="btn btn-outline-dark" type="button" onclick="toggleMenu()" value="Preencher Formulário">
-      
-    </div>
-<div class="div_content">
-  <div onclick="toggleMenu();" class="toggle"></div>
-  <form id="forms" method="post" action="">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" value="Solicitar" style="font-weight: 500;margin: 5px;" class="btn btn-outline-light" value="Solicitar Empréstimo"> 
-  </form>
 </div>
-<div class="div-content">
-  <h3>Você já enviou 65% da documentação necessaria para a análise de crédito</h3>
+<div class="docs">
+    <h1>ABC</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi eum sit laboriosam, reprehenderit quia illum, nam saepe sunt eveniet omnis perspiciatis at magnam voluptatibus explicabo temporibus sed illo ipsam. Nisi?</p>
 </div>
-<script>
-  function toggleMenu() {
-    const menuToggle = document.querySelector('.toggle');
-    const sss = document.querySelector('.div_content');
-    sss.style.display = "block";
-    menuToggle.classList.toggle('active');
-    sss.classList.toggle('active');
-  }
-</script>
 {% endblock %}
+
+

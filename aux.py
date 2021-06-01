@@ -228,6 +228,7 @@ model = xgb.XGBClassifier(learning_rate=0.009, max_depth=6, min_child_weight=3,
 model.fit(X_train, y_train)
 p = model.predict_proba(X_test)
 roc_auc_score(y_test, p[:, 1])
+
 """
 from pybrain3.tools.shortcuts import buildNetwork
 from pybrain3.structure import TanhLayer
@@ -236,7 +237,7 @@ from pybrain3.supervised.trainers import BackpropTrainer
 import server
 
 # Create a network with two inputs, three hidden, and one output
-nn = buildNetwork(10, 30, 1, bias=True, hiddenclass=TanhLayer)
+nn = buildNetwork(10, 3, 1, bias=True, hiddenclass=TanhLayer)
 
 # Create a dataset that matches network input and output sizes:
 norgate = SupervisedDataSet(10, 1)
@@ -245,8 +246,8 @@ norgate = SupervisedDataSet(10, 1)
 
 # Add input and target values to dataset
 # Values for NOR truth table
-norgate.addSample((0,1,0,1,0,1,0,1,0,1), (1,)) # 1 == aprovado
-norgate.addSample((1,0,1,0,1,0,1,0,1,0), (1,)) # 0 == recusado
+norgate.addSample((0,1,0,1,0,1,0,1,0,1), (1,))
+norgate.addSample((1,0,1,0,1,0,1,0,1,0), (1,))
 norgate.addSample((0,1,0,1,0,0,1,0,0,0), (0,))
 norgate.addSample((0,0,1,0,0,0,0,0,1,1), (0,))
 norgate.addSample((1,0,0,0,1,1,0,0,1,1), (1,))
@@ -275,12 +276,9 @@ server.x8,
 server.x9,
 server.x10])
 
-credit_result = ''
 if resultado >= 1.00000000:
-  credit_result = 'Credito aprovado'
   print("Crédito aprovado")
   print(resultado)
 else:
-  credit_result = 'Credito recusado'
   print("Crédito recusado")  
-  print(resultado)
+  print(resultado) 

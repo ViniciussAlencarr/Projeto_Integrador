@@ -1,74 +1,43 @@
 {% extends 'clienteSide/clienteHomeScreen.html' %}
 {% block title %}Cliente | Documentação{% endblock %}
 {% block content %}
+<div class="content-top">
+  <p>Cliente: {{cliente.id}}</p>
+  <p>CNPJ: </p>
+</div>
 <div class="asb">
-  <form method="GET" class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Buscar documento..." placeholder="Search" name="search" id="search" aria-label="Search">
-      <button class="btn btn-outline-dark" type="submit">Search</button>
+    <form method="GET" class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-dark" type="submit">Search</button>
       </form>
       {% if db %}
       <ul class="list-group list-group-flush">
-        {% for dbs in db %}
-        <li class="list-group-item">{{dbs.balancos}}</li>
-        <li class="list-group-item">{{dbs.faturamento_Anual}}</li>
-        <li class="list-group-item">{{dbs.doc_Contrato_Social}}</li>
-        <li class="list-group-item">{{dbs.renda_Bruta_Anual}}</li>
-        <li class="list-group-item">{{dbs.indice_Liquidez}}</li>
-        <li class="list-group-item">{{dbs.doc_Indice_Dividas}}</li>
-        <li class="list-group-item">{{dbs.rentabilidade_Investimentos}}</li>
-        <li class="list-group-item">{{dbs.holerites_Doc}}</li>
-        <li class="list-group-item">{{dbs.doc_Declaracao_IR}}</li>
-        <li class="list-group-item">{{dbs.receita_Operacional}}</li>
-        <li class="list-group-item">{{dbs.doc_Valores_Contabeis}}</li>
-        {% endfor %}
+        <li class="list-group-item">An item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth item</li>
+        <li class="list-group-item">And a fifth one</li>
       </ul>
       {% else %}
+      {% endif %}
       <p style="margin-top: 10%;">
         Nenhum dado encontrado...</br>Parece que você ainda não preencheu o formulário.
-        
+
       </p>
       <input style="width: 100%; font-weight: 400; margin-top: 0%;" class="btn btn-outline-dark" type="button" onclick="toggleMenu()" value="Preencher Formulário">
-      {% endif %}
-      
       
     </div>
-    <div class="div_content">
-      <div  onclick="toggleMenu();" class="toggle"></div>
-  <div class="row">
-    <form id="forms" method="post" action="">
-      {% csrf_token %}
-      <label for="exampleFormControlInput1" class="form-label">Balanços</label>
-      <input type="text" name="balancos" placeholder="Valor dos balanços" maxlength="200" required="" id="id_balancos">
-      <label for="exampleFormControlInput1" class="form-label">Faturamento Anual</label>
-      <input type="number" placeholder="Faturamento anual" name="faturamento_Anual" step="0.01" required="" id="id_faturamento_Anual">
-      <label for="exampleFormControlInput1" class="form-label">Contrato Social</label>
-      <input type="text" placeholder="Contrato Social" name="doc_Contrato_Social" maxlength="120" required="" id="id_doc_Contrato_Social">
-      <label for="exampleFormControlInput1" class="form-label">Renda Anual Bruta</label>
-      <input type="number" placeholder="Renda Bruta Anual" name="renda_Bruta_Anual"  step="0.01" required="" id="id_renda_Bruta_Anual">
-      <label for="exampleFormControlInput1" class="form-label">Indice de Liquidez</label>
-      <input type="number" placeholder="Indice Liquidez" name="indice_Liquidez" step="0.01" required="" id="id_indice_Liquidez">
-      <label for="exampleFormControlInput1" class="form-label">Indice de Dívidas</label>
-      <input type="text" placeholder="Indice de Dívidas" name="doc_Indice_Dividas" maxlength="60" required="" id="id_doc_Indice_Dividas">
-      <label for="exampleFormControlInput1" class="form-label">Rentabilidade em Investimentos</label>
-      <input type="number" placeholder="Rentabilidade em Investimentos" name="rentabilidade_Investimentos" step="0.01" required="" id="id_rentabilidade_Investimentos">
-      <label for="exampleFormControlInput1" class="form-label">Holerites</label>
-      <input type="text" placeholder="Holerites" name="holerites_Doc" maxlength="60" required="" id="id_holerites_Doc">
-      <label for="exampleFormControlInput1" class="form-label">Declaração de IR</label>
-      <input type="text" placeholder="Declaração de Imposto de Renda" name="doc_Declaracao_IR" maxlength="60" required="" id="id_doc_Declaracao_IR">
-      <label for="exampleFormControlInput1" class="form-label">Receita Operacional</label>
-      <input type="text" placeholder="Receita Operacional" name="receita_Operacional" required="" id="id_receita_Operacional">
-      <label for="exampleFormControlInput1" class="form-label">Valores Contabeis</label>
-      <input type="text" placeholder="Valores Contabéis" name="doc_Valores_Contabeis" maxlength="40" required="" id="id_doc_Valores_Contabeis"> 
-      <input type="submit" value="Solicitar" style="font-weight: 500;margin: 5px; padding-left: 50px; margin-top: 30px;" class="btn btn-outline-light" value="Solicitar Empréstimo"> 
-    </form>
-  </div>
+<div class="div_content">
+  <div onclick="toggleMenu();" class="toggle"></div>
+  <form id="forms" method="post" action="">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Solicitar" style="font-weight: 500;margin: 5px;" class="btn btn-outline-light" value="Solicitar Empréstimo"> 
+  </form>
 </div>
 <div class="div-content">
-  <img src="../../static/img/asdsadas.png" width="152px" alt="">
-  <div style="margin-top: 7%;">
-    <h3>Você já enviou 65% da documentação necessaria para a análise de crédito</h3>
+  <h3>Você já enviou 65% da documentação necessaria para a análise de crédito</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi eum sit laboriosam, reprehenderit quia illum, nam saepe sunt eveniet omnis perspiciatis at magnam voluptatibus explicabo temporibus sed illo ipsam. Nisi?</p>
-</div>
 </div>
 <script>
   function toggleMenu() {

@@ -30,6 +30,5 @@ class Formulario_Form(forms.ModelForm):
     class Meta:
         model = Formulario
         fields = '__all__'
-        exclude = ['id_Cliente', 'id_Endereco_Empresa']
 
     

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.db.models import fields
 from django.forms import ModelForm
 from django import forms
 from app.models import *
@@ -25,12 +26,10 @@ class Emprestimo_Form(forms.ModelForm):
         model = Emprestimo
         fields = '__all__'
         
-
-""" class Emprestimo_Valor_Form(forms.ModelForm):
+class Formulario_Form(forms.ModelForm):
     class Meta:
-        model = Emprestimo_Valor
+        model = Formulario
         fields = '__all__'
- """
-
+        exclude = ['id_Cliente', 'id_Endereco_Empresa']
 
     

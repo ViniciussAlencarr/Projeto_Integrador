@@ -49,12 +49,14 @@
           </div>
         </div>
       </nav>
-      <div class="col-8 m-auto pt-4 text-center aux">
-        {% block content %}
+      {% block content %}
         <h1>Bem vindo Cliente ao componente Home</h1>
-        {% endblock %}
-      </div>
+      {% endblock %}
       {% load static %}
+      <footer class="footer">
+        <hr>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa culpa ab, illo ad rem amet praesentium. Vitae sunt, facere, delectus excepturi dolore eum velit nesciunt fugiat dolor blanditiis quisquam? Nihil.</p>
+      </footer>
       <script src="{% static 'javascript.js' %}"></script>
       
        <!-- Dropdown do bootstrap -->

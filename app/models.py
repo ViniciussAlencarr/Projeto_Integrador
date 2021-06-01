@@ -47,8 +47,8 @@ class Endereco_Empresa_Cliente(models.Model):
     id_Tipo_Logradouro = models.ForeignKey(Tipo_Logradouro, on_delete=models.CASCADE, default=None) # Chave estrangeira da classe Tipo_Logradouro
 
 class Formulario(models.Model):
-    id_Cliente = models.OneToOneField(Cliente, on_delete=models.CASCADE, default=None) # chave estrangeira da classe Cliente
-    id_Endereco_Empresa = models.ForeignKey(Endereco_Empresa_Cliente, on_delete=models.CASCADE, default=None) # chave estrangeira da classe Endereco_Empresa_Cliente
+    id_Cliente = models.OneToOneField(Cliente, null=True, on_delete=models.CASCADE, default=None) # chave estrangeira da classe Cliente
+    id_Endereco_Empresa = models.ForeignKey(Endereco_Empresa_Cliente, null=True, on_delete=models.CASCADE, default=None) # chave estrangeira da classe Endereco_Empresa_Cliente
     balancos = models.CharField(max_length=200)
     faturamento_Anual = models.DecimalField(default=0.00, max_digits=60, decimal_places=2)
     doc_Contrato_Social = models.CharField(max_length=120)
@@ -58,7 +58,7 @@ class Formulario(models.Model):
     rentabilidade_Investimentos = models.DecimalField(default=0.00, max_digits=60, decimal_places=2)
     holerites_Doc = models.CharField(max_length=60)
     doc_Declaracao_IR = models.CharField(max_length=60)
-    receita_Operacional = models.DateField()
+    receita_Operacional = models.CharField(max_length=200)
     doc_Valores_Contabeis = models.CharField(max_length=40)
 
 class Tipo_Telefone(models.Model):

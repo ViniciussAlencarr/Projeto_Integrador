@@ -1,3 +1,4 @@
+from django.forms.forms import Form
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from app.models import *
@@ -149,9 +150,17 @@ def solicitacoes(request):
 @login_required
 def docs(request):
     data = {}
-    data['cliente'] = Cliente.objects.all()
-    """ data['form'] = Formulario_Form(request.POST or None) """
-    """ if data['form'].is_valid(): """
-    """     data['form'].save() """
-    """     return redirect('docs') """
+    try:
+        data['db'] = Formulario.objects.order_by('id')[0]
+        search = request.GET.get('search')
+        if (search):
+            data['db'] = Formulario.objects.filter(nome__icontains = search)
+        else:
+            data['db'] = Formulario.objects.all()
+    except:
+        data['db'] = Formulario.objects.all()
+    data['form'] = Formulario_Form(request.POST) 
+    if data['form'].is_valid():
+         data['form'].save() 
+         return redirect('docs') 
     return render(request, 'clienteSide/documentos.html', data)

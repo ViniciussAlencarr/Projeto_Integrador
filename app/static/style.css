@@ -7,65 +7,97 @@
 }
 .content {
     max-width: max-content;
-}  
-/* .cde .ss {
+}   
+
+footer {
+    background-color: black;
+    margin-top: 65%;
+    left: 0;
+    width: 100%;
+    padding: 70px;
+    background-color: #212529;
+    color: white;
+    text-align: center;
+}
+.cde .ss {
     margin-left: 0%;
     background-color: red;
-} */
+} 
 
 .content-top {
     font-weight: 600;
     margin-left: 5%;
     margin-top: 2%;
-}
+} 
 
+.row {
+    display: table;
+    padding: 0 20px;
+    width: 100%;
+}
+.row form {
+    width: 100%;
+    margin: 0 auto;
+    /* box-shadow: 0 4px 8px #999; */
+}
+.row label {
+    margin: 5px;
+    font-weight: 600;
+}
+.row input {
+    width: 100%;
+}
 .div_content {
     display: none;
-    position: fixed;
-    top: 0;
+    /* overflow-y: scroll; */
+    position: absolute;
     right: 30px;
-    width: calc(100% - 70px);
+    width: calc(50% - 0px);
     justify-content: center;
     align-items: center;
     font-weight: 100;
     color: #fff;
     background-color: rgb(0, 0, 0);
     transition: 0.5s;
-    padding: 40px;
     z-index: 100;
     border: 2px 2px 2px white;
 }
 
 .div_content.active,.toggle.active {
     right: 100%;
-    height: auto;
 } 
 
-.div_content form {
+/* .div_content form {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: auto;
+    margin-top: 10px;
+    grid-row: 1;
 }
 
 .div_content form p {
     list-style: none;
+    font-weight: 500;
 }
 
 .div_content form p input {
     color: #212529;
     text-decoration: none;
     font-size: 1em;
-    margin: 10px;
+    margin: 2px;
+    margin-right: -50%;
     transition: 0.5s;
-}
+} */
 
 .toggle {
     border-radius: 20px;
     position: fixed;
-    top: 0px;
+    top: 50px;
     right: 30px;
-    width: 50px;
+    width: 42px;
+    box-shadow: 2px 2px 2px 1px rgba(2, 2, 2, 0.2);
     height: 50px;
     background: #212529 url(img/75519.png);
     background-size: 30px;
@@ -83,6 +115,7 @@
     margin-top: 10px;
     transition: 0.5s;
 }
+
 .list-group :hover {
     transition: 0.5s;
     color: #fff;
@@ -94,7 +127,9 @@
     display: block;
     margin-left: 5%;
     margin-right: 50%;
-    margin-top: 5%;    
+    margin-top: 5%; 
+    margin-bottom: auto;   
+    
 }
 
 .div-content {

@@ -152,11 +152,7 @@ def docs(request):
     data = {}
     try:
         data['db'] = Formulario.objects.order_by('id')
-        search = request.GET.get('search')
-        if (search):
-            data['db'] = Formulario.objects.filter(nome__icontains = search)
-        else:
-            data['db_'] = Formulario.objects.all()
+        data['search'] = request.GET.get('search')
     except:
         data['db'] = Formulario.objects.all()
     data['form'] = Formulario_Form(request.POST) 

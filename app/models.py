@@ -23,6 +23,7 @@ class Emprestimo(models.Model):
     situacao = models.CharField(max_length=40)
 
 class Pagamento(models.Model):
+    limite = models.DecimalField(default=0.00, max_digits=60, decimal_places=2)
     form_Pag = models.CharField(max_length=20)
 
 class Resultado(models.Model):

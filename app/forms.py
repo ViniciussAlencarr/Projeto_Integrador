@@ -32,4 +32,10 @@ class Formulario_Form(forms.ModelForm):
         fields = '__all__'
         exclude = ['id_Cliente', 'id_Endereco_Empresa']
 
+class Pagamentos_Form(forms.ModelForm):
+    class Meta:
+        model = Pagamento
+        fields = ['limite']
+        
+        
     

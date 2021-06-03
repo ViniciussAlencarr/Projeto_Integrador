@@ -8,16 +8,20 @@
 .content {
     max-width: max-content;
 }   
+
 .screenLimit {
     right: 30px;
-    top: 697px;
+    top: 797px;
     width: calc(50% - 10px);
     justify-content: center;
     align-items: center;
+    height: 380px;
+    text-align: center;
     font-weight: 100;
     position: absolute;
     margin-right: 40%;
     background-color: #fff;
+    transition: 0.5s;
     color: rgb(0, 0, 0);
     transition: 0.5s;
     box-shadow: -15px -15px 15px rgba(0,0,0,0.1),
@@ -59,8 +63,7 @@
 .screenLimit.active {
     transition: 0.5s;
     display: block;
-    top: 9%;
-    
+    top: 23%;
 }
 
 footer {
@@ -234,6 +237,7 @@ body {
     justify-content: center;
     align-items: center;
     font-weight: 100;
+    transition: 0.5s;
     color: #fff;
     
 }
@@ -253,7 +257,9 @@ body {
 }
 
 .sss.active,.toggle.active {
-    right: -100%;
+    display: flex;
+    transition: 0.5s;
+    right: 2%;
 } 
 
 .sss form {

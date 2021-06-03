@@ -70,20 +70,30 @@
           {% endfor %}
       </table>
       <div class="screenLimit">
-        <h3 style="background-color: #212529; color: #fff;">Novo Limite</h3>
-        <hr>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi consequuntur nam harum sunt assumenda vero veritatis doloribus cumque neque odit recusandae ex, nulla minima quod repudiandae alias modi odio. Id?</p>
+        <form action="" method="POST">
+          {% csrf_token %}
+          <h3 style="background-color: #212529; color: #fff; border-radius: 10px; text-align: center;">Novo Limite</h3>
+          <hr>
+          <input type="number" name="limite" value="{{j.limite}}" step="0.01" required="" id="id_limite">
+          <input type="submit" style="font-weight: 500;margin: 5px;" class="btn btn-outline-dark" value="Alterar Limite">  
+        </form>
 
       </div>
       <div class="cde">
         <p>Limite Aprovado</p>
         <hr style="background-color: #7284a8;">
-        <p>R$ 60.000,00</p>
+        {% for value in valor_limite %}
+        {% if value %}
+        <p>R$ {{value.limite}}</p>
+        {% else %}
+        <p>Defina um limite...</p>
+        {% endif %}
+        {% endfor %}
         <p>Lorem,  adipisicing elit.Porro odio repudiandae veritatis iure possimus rem quibusdam? Sed modi.</p>
       </div>
       <div class="divBtn">
         <input onclick="toggleMenu();" type="button" style="font-weight: 500;margin: 5px;" class="solicitarEmprestimo btn btn-outline-dark" value="Solicitar Empréstimo">
-        <input onclick="toggleMenu2();" style="font-weight: 500;margin: 5px;" type="button" class="btn btn-outline-dark" type="button" value="Alterar Limite">
+        <input onclick="toggleMenu2();" style="font-weight: 500;margin: 5px;" type="button" class="btn btn-outline-dark" type="button" value="Aumentar Limite">
       </div>
     </div> 
     <div class="sss">
@@ -100,10 +110,6 @@
         <input type="submit" value="Solicitar" style="font-weight: 500;margin: 5px;" class="btn btn-outline-light" value="Solicitar Empréstimo"> 
       </form>
     </div>
-    <footer class="footer">
-      <hr>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa culpa ab, illo ad rem amet praesentium. Vitae sunt, facere, delectus excepturi dolore eum velit nesciunt fugiat dolor blanditiis quisquam? Nihil.</p>
-    </footer>
       <script>
         function toggleMenu2() {
           const ddd = document.querySelector('.table');
@@ -114,7 +120,6 @@
         function toggleMenu() {
           const menuToggle = document.querySelector('.toggle');
           const sss = document.querySelector('.sss');
-          sss.style.display = "flex";
           menuToggle.classList.toggle('active');
           sss.classList.toggle('active');
         }

@@ -135,14 +135,25 @@ def logout_adm(request, pk):
     logout(request)
     return redirect('login')
 
-
 @login_required
 def solicitacoes(request):
     data = {}
     data['db'] = Emprestimo.objects.all()
+    aux = Pagamento.objects.order_by('limite')[0]
     data['form'] = Emprestimo_Form(request.POST)
+    data['valor_limite'] = Pagamento.objects.all()
+    data['id_'] = Pagamento.objects.order_by('id')[0]
+    data['limite'] = Pagamentos_Form(request.POST or None, instance=data['id_'])
+    data['j'] = aux
+    # formulário solicitação de empréstimo
     if data['form'].is_valid():
         data['form'].save()
+        return redirect('solicitacoes')
+    # formulario de alteração de limite
+    if data['limite'].is_valid():
+        data['limite'].save()
+        return redirect('solicitacoes')
+
     else:
         form = Emprestimo_Form()
     return render(request, 'clienteSide/solicitacoes.html', data) 

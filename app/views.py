@@ -153,7 +153,6 @@ def solicitacoes(request):
     if data['limite'].is_valid():
         data['limite'].save()
         return redirect('solicitacoes')
-
     else:
         form = Emprestimo_Form()
     return render(request, 'clienteSide/solicitacoes.html', data) 

@@ -95,9 +95,25 @@
         <input onclick="toggleMenu2();" style="font-weight: 500;margin: 5px;" type="button" class="btn btn-outline-dark" type="button" value="Aumentar Limite">
       </div>
     </div> 
+    <div class="metodo_pag">
+      <hr style="background-color: white;">
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="div_cartao">
+          <h5 onclick="payment()"> CARTÃO DE CRÉDITO</h5>
+          <hr class="hr">
+        </div>
+        <div class="div_boleto" >
+          <h5 onclick="payment2()"> BOLETO</h5>
+            <hr class="d">
+          </div>
+        </form>
+    </div>
+      
+      
     <div class="sss">
       <div onclick="toggleMenu();" class="toggle"></div>
-      <h3 style="padding: 100px;">SOLICITE UM EMPRÉSTIMO</h3>
+      <h3 style="padding: 100px;">SOLICITE UM EMPRÉSTIMO</h3> 
       <hr style="background-color: white;">
       <form id="forms" method="post" action="">
         {% csrf_token %}
@@ -110,6 +126,33 @@
       </form>
     </div>
       <script>
+        function payment2() {
+          x = document.querySelector('.d');
+          y = document.querySelector('.hr');
+          if (y.style.padding == 0) {
+            x.classList.toggle('active');
+          }
+
+        }
+        function payment() {
+          x = document.querySelector('.hr');
+          y = document.querySelector('.d');
+          if (y.style.padding == 5) {
+            x.classList.toggle('active');
+          }
+          /* switch (y) {
+            case y.style.padding == 0:
+              y.style.padding = '5px';
+            case y.style.padding == 5:
+              y.style.padding = '0px'
+              break;
+            default:
+              
+              break;
+          } */
+          x.classList.toggle('active');
+        }
+
         function toggleMenu2() {
           const ddd = document.querySelector('.table');
           const xxx = document.querySelector('.screenLimit')

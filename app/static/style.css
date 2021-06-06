@@ -66,6 +66,13 @@
     position: absolute;
     background-color: #212529;
 }
+.div_cartao input {
+    background-color: #3c4249;
+    color: white;
+    margin: 10px;
+    margin-left: 12%;
+    border: none;
+}
 
 /* .div_cartao hr {
     padding: 5px;
@@ -83,22 +90,68 @@
     margin-left: 25%;
     background-color: #212529;
 }
-.d {
+.boleto_content a {
+    color: white;
+    
+}
+
+.boleto_content p {
+    font-weight: 400;
+}
+.cartao_content p {
+    font-weight: 400;
+}
+.cartao_content input {
+    padding: 3px;
+}
+
+.d, .boleto_content {
+    display: none;
+    transition: 0.5s;
+}
+
+.hr {
+    padding: 5px;
+    transition: 0.5s;
+}
+
+.d.active, .boleto_content.active {
+    display: block;
+    padding: 5px;
+    transition: 0.5s;
+}
+.hr.active, .cartao_content.active {
+    display: none;
+    transition: 0.5s;
+}
+
+/* .hr.active {
+    display: block;
+    transition: 0.5s;
+}
+
+.d.active {
+    padding: 5px;
+    transition: 0.5s;
+    display: block;
+} */
+/* .d {
     transition: 0.5s;
 }
 .hr {
-    padding: 5px;
     transition: 0.5s;
 }
 .d.active {
     padding: 5px;
     transition: 0.5s;
+    margin-right: 100%;
 }
 
 .hr.active {
-    padding: 0px;
+    padding: 5px;
+    margin-left: 100%;
     transition: 0.5s;
-}
+} */
 
 .div_boleto h5 {
     margin-left: 35%;

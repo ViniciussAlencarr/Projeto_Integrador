@@ -95,22 +95,46 @@
         <input onclick="toggleMenu2();" style="font-weight: 500;margin: 5px;" type="button" class="btn btn-outline-dark" type="button" value="Aumentar Limite">
       </div>
     </div> 
-    <div class="metodo_pag">
+    <div style="display: none;" class="metodo_pag">
       <hr style="background-color: white;">
+      <hr>
       <form action="" method="post">
         {% csrf_token %}
         <div class="div_cartao">
           <h5 onclick="payment()"> CARTÃO DE CRÉDITO</h5>
           <hr class="hr">
+          <div class="cartao_content">
+            <p style="margin-left: 12%; position: absolute; margin-top: -3%; ">TITULAR DO CARTÃO</p>
+            <input style="margin-bottom: 5%;" type="text">
+            <p style="position: absolute; margin-left: 12%; margin-top: -3%;">NÚMERO DO CARTÃO</p>
+            <input style="margin-bottom: 5%;" type="text">
+            <input style="margin-bottom: 5%;" type="text">
+            <input style="margin-bottom: 5%;" type="text">
+            <p style="margin-left: 12%; padding-top: 8px; position: absolute; margin-top: -4%; font-size: 9pt;">DATA DE VALIDADE</p>
+            <input style="width: 27%; padding-right: 0px; text-align: center;" placeholder="MM/AA" type="text">
+            <p style="margin-left: 89%; margin-top: -14%;padding-top: 0px; position: absolute; font-size: 9pt; margin-left: 55%;">CÓDIGO DE SEGURANÇA</p>
+            <input style="float: left; position: absolute; width: 38%; text-align: center;" placeholder="CVV" type="text">
+          </div>
         </div>
         <div class="div_boleto" >
-          <h5 onclick="payment2()"> BOLETO</h5>
+          <h5 onclick="payment()"> BOLETO</h5>
             <hr class="d">
+            <div class="boleto_content">
+              <p>Pagar valor de
+                <p style="font-size: 3rem;">R$ 1230</p> 
+                <hr>
+                <a href="../../../Untitled Diagram.pdf" download="Boleto.pdf" type="application/pdf"><i class="fas fa-ticket-alt"> Gerar boleto</i></a>
+              </p>
+              
+              <hr style="width: 40%; padding: 2px; color: #7284a8;">
+              <p>Pagar boleto com</br>
+                <a href="#"><i class="fab fa-paypal"> PayPal</i></a>  |  <a href="#"><img style="width: 65px;"  src="../../static/img/logo-picpay-1024.png" alt="PicPay"></a>
+              </p>
+
+            </div>
           </div>
         </form>
     </div>
-      
-      
     <div class="sss">
       <div onclick="toggleMenu();" class="toggle"></div>
       <h3 style="padding: 100px;">SOLICITE UM EMPRÉSTIMO</h3> 
@@ -122,36 +146,24 @@
         <input placeholder="Quantidade de parcelas" type="number" name="qtde_Parcelas" required="" id="id_qtde_Parcelas">
         <input placeholder="Valor da parcela" type="number" name="valor_unitario" required="" id="id_valor_unitario">
         <input placeholder="Situação do empréstimo" type="text" name="situacao" maxlength="40" required="" id="id_situacao">
-        <input type="submit" value="Solicitar" style="font-weight: 500;margin: 5px;" class="btn btn-outline-light" value="Solicitar Empréstimo"> 
+        <input onclick="met_payment()" type="submit" value="Solicitar" style="font-weight: 500;margin: 5px;" class="btn btn-outline-light" value="Solicitar Empréstimo"> 
       </form>
     </div>
       <script>
-        function payment2() {
-          x = document.querySelector('.d');
-          y = document.querySelector('.hr');
-          if (y.style.padding == 0) {
-            x.classList.toggle('active');
-          }
-
+        function met_payment() {
+          x = document.querySelector('.metodo_pag');
+          x.style.display = 'flex';
         }
         function payment() {
-          x = document.querySelector('.hr');
-          y = document.querySelector('.d');
-          if (y.style.padding == 5) {
-            x.classList.toggle('active');
-          }
-          /* switch (y) {
-            case y.style.padding == 0:
-              y.style.padding = '5px';
-            case y.style.padding == 5:
-              y.style.padding = '0px'
-              break;
-            default:
-              
-              break;
-          } */
+          x = document.querySelector('.d');
+          y = document.querySelector('.hr');
+          c_content = document.querySelector('.cartao_content');
+          b_content = document.querySelector('.boleto_content');
+          c_content.classList.toggle('active');
+          b_content.classList.toggle('active');
           x.classList.toggle('active');
-        }
+          y.classList.toggle('active');
+        } 
 
         function toggleMenu2() {
           const ddd = document.querySelector('.table');
@@ -170,5 +182,5 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</body>
+  </body>
 </html>

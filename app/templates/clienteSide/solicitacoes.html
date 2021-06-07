@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" href="../../static/style.css">
+  
 </head>
 <body>
     <nav style="font-size: 12pt;" class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -104,16 +105,24 @@
           <h5 onclick="payment()"> CARTÃO DE CRÉDITO</h5>
           <hr class="hr">
           <div class="cartao_content">
-            <p style="margin-left: 12%; position: absolute; margin-top: -3%; ">TITULAR DO CARTÃO</p>
+            <p class="description_p" style="">TITULAR DO CARTÃO</p>
             <input style="margin-bottom: 5%;" type="text">
-            <p style="position: absolute; margin-left: 12%; margin-top: -3%;">NÚMERO DO CARTÃO</p>
-            <input style="margin-bottom: 5%;" type="text">
-            <input style="margin-bottom: 5%;" type="text">
-            <input style="margin-bottom: 5%;" type="text">
-            <p style="margin-left: 12%; padding-top: 8px; position: absolute; margin-top: -4%; font-size: 9pt;">DATA DE VALIDADE</p>
+            <p class="description_p" style="">NÚMERO DO CARTÃO</p>
+            <input style="margin-bottom: 5%;" type="text"><img style="margin-left: -10%;margin-top: 4%; position: absolute;"  width="25px" src="../../static/img/1200px-Old_Visa_Logo.svg.png" alt=""><img style="margin-left: -18%;margin-top: 4%; position: absolute;"  width="25px" src="../../static/img/logo-cielo.png" alt=""><img style="margin-left: -25%;margin-top: 4%; position: absolute;"  width="25px" src="../../static/img/mcbc_refeicao-rev_84px.png" alt="">
+            <p class="description_p" style="font-size: 9pt;">DATA DE VALIDADE</p>
             <input style="width: 27%; padding-right: 0px; text-align: center;" placeholder="MM/AA" type="text">
-            <p style="margin-left: 89%; margin-top: -14%;padding-top: 0px; position: absolute; font-size: 9pt; margin-left: 55%;">CÓDIGO DE SEGURANÇA</p>
-            <input style="float: left; position: absolute; width: 38%; text-align: center;" placeholder="CVV" type="text">
+            <p style="margin-left: 89%; margin-top: -15%;; position: absolute; font-size: 9pt; margin-left: 55%;">CÓDIGO DE SEGURANÇA</p>
+            <input style="float: left; position: absolute; width: 39%; text-align: center;" placeholder="CVV" type="text">
+            <div class="form-check form-switch">
+              <p style="position: absolute;padding-left: 8px;padding-top: 3px;font-size: 10pt;margin-right: 20%;">Armazenar minhas informações de pagamento. <a href="">Saiba mais</a></p>
+              <input style="margin-left: 83%;" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+            </div>
+            <p style="position: absolute; margin-left: 12%; margin-top: 7%; font-size: 10pt;">CPF</p>
+            <input style="margin-top: 10%;" type="text">
+            <div style="overflow: auto;">
+              <p class="" style="position: relative; margin-top: 1%; margin-left: 12%; width: auto; height: 100px; ">Ao selecionar "Concordar e Solicitar" Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quia laborum, hic provident illum pariatur deserunt minima repudiandae quidem quasi tenetur consequuntur accusamus, consequatur corrupti animi suscipit veritatis id blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odio quaerat dolore tempora dolorum, atque deleniti obcaecati incidunt vel culpa soluta.</p>
+            </div>
+            <input onclick="" type="button" style="margin-left: 12%; font-weight: 500; width: 80%; margin-top: 6%; padding: 15px;" class="btn btn-outline-dark" value="Concordar e Solicitar">
           </div>
         </div>
         <div class="div_boleto" >
@@ -130,26 +139,73 @@
               <p>Pagar boleto com</br>
                 <a href="#"><i class="fab fa-paypal"> PayPal</i></a>  |  <a href="#"><img style="width: 65px;"  src="../../static/img/logo-picpay-1024.png" alt="PicPay"></a>
               </p>
-
             </div>
           </div>
         </form>
     </div>
     <div class="sss">
       <div onclick="toggleMenu();" class="toggle"></div>
-      <h3 style="padding: 100px;">SOLICITE UM EMPRÉSTIMO</h3> 
+      <h3 style="padding: 100px;">SOLICITE UM EMPRÉSTIMO</h3>  
       <hr style="background-color: white;">
       <form id="forms" method="post" action="">
         {% csrf_token %}
-        <input type="number" placeholder="Valor" name="valor" required="" id="id_valor">
+        <p style="margin-right: 15%; position: absolute; margin-top: -29%; font-weight: 400;" >VALOR DO EMPRÉSTIMO
+          <p class="resultado" style="font-size: 3rem; margin-right: 9%; position: absolute;margin-top: -20%;">R$ 50.000,00</p><a class="acio" href="#" onclick="setValue()" style="margin-top: -21%; color: white; margin-left: 19%; position: absolute;"><i class="fas fa-pen"></i></a>
+          <input style="margin-top: -16%;padding: 12px; width: 20%; margin-left: -3%;position: absolute;" type="number" placeholder="Novo do empréstimo" class="valor" name="valor" required="" id="id_valor"><button class="btn01 btn btn-outline-light" type="submit">Alterar</button><!--Fazer update no banco de dados-->
+        </p>
+        <label style="margin-left: -37%; margin-top: 30%;"for="">Escolha o tipo de empréstimo</label>
+        <select style="background-color: #212529; border: none;color: white;" class="form-select" aria-label="Default select example">
+          <option selected>Empréstimo pessoal</option>
+          <option value="">Emprestimo com portabilidade de salário</option>
+        </select>
+        <hr>
+        <label style="margin-left: -37%;" for="">Escolha o número de parcelas</label>
+        <select style="background-color: #212529; border: none; color: white; overflow: auto;" class="form-select" aria-label="Default select example">
+          <option selected>12x de R$ 11,17</option>
+          <option value="105,10">1 parcela de <b>R$ 105,10</b></option>
+          <option value="53,77">2 parcela de <b>R$ 53,77</b></option>
+          <option value="36,67">3 parcela de <b>R$ 36,67</b></option>
+          <option value="28,12">4 parcela de <b>R$ 28,12</b></option>
+          <option value="23,01">5 parcela de <b>R$ 23,01</b></option>
+          <option value="23,01">6 parcela de <b>R$ 23,01</b></option>
+          <option value="23,01">7 parcela de <b>R$ 23,01</b></option>
+          <option value="23,01">8 parcela de <b>R$ 23,01</b></option>
+          <option value="23,01">9 parcela de <b>R$ 23,01</b></option>
+          <option value="23,01">10 parcela de <b>R$ 23,01</b></option>
+          <option value="23,01">11 parcela de <b>R$ 23,01</b></option>
+          <option value="23,01">12 parcela de <b>R$ 23,01</b></option>
+        </select>
+        <label style="margin-left: -28%;margin-top: 14%;" for="">Escolha a data da primeira parcela</label>
+        <input style="background-color: #212529; color: white;margin-left: -53%;border-radius: 5px; padding-left: 10px; margin-top: 0%;" type="date">
+        <p style="color: white; position: absolute; margin-left: -18%;margin-top: 17%; font-size: 11pt;">Juros de 4.45% ao mês</p>
+      </div>
+        <!-- <input type="number" placeholder="Valor" name="valor" required="" id="id_valor">
         <input placeholder="Data da solicitação" type="text" name="data_Solicitacao" required="" id="id_data_Solicitacao">
         <input placeholder="Quantidade de parcelas" type="number" name="qtde_Parcelas" required="" id="id_qtde_Parcelas">
         <input placeholder="Valor da parcela" type="number" name="valor_unitario" required="" id="id_valor_unitario">
         <input placeholder="Situação do empréstimo" type="text" name="situacao" maxlength="40" required="" id="id_situacao">
-        <input onclick="met_payment()" type="submit" value="Solicitar" style="font-weight: 500;margin: 5px;" class="btn btn-outline-light" value="Solicitar Empréstimo"> 
+        <input onclick="met_payment()" type="submit" value="Selecionar método de pagamento" style="font-weight: 500;width: 80%; text-align: center;" class="btn btn-outline-light" value="">  -->
       </form>
     </div>
       <script>
+        function setValue() {
+          value = document.querySelector('.valor');
+          show = document.querySelector('.resultado')
+          btn = document.querySelector('.btn01')
+          a = document.querySelector('.acio')
+          value.classList.toggle('active')
+          btn.classList.toggle('active')
+          a.classList.toggle('active')
+          show.classList.toggle('active')
+        }
+        $(document).ready(function() {
+          var btn = $('.btn btn-secondary dropdown-toggle');
+          var btnDropDown = $('.dropdown-menu dropdown-menu-lg-end');
+          botao.on('click', function(event) {
+            btnDropDown.stop(true, true).slideToggle();
+            event.stopPropagation();
+          })
+        })
         function met_payment() {
           x = document.querySelector('.metodo_pag');
           x.style.display = 'flex';

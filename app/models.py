@@ -19,7 +19,7 @@ class Emprestimo(models.Model):
     valor = models.IntegerField()
     data_Solicitacao = models.DateField()
     qtde_Parcelas = models.IntegerField()
-    valor_unitario = models.IntegerField()
+    valor_unitario = models.IntegerField(null=True)
     situacao = models.CharField(max_length=40)
 
 class Pagamento(models.Model):

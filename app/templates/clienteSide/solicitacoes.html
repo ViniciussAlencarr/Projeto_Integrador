@@ -79,6 +79,7 @@
           <input type="submit" style="font-weight: 500;margin: 5px;" class="btn btn-outline-dark" value="Alterar Limite">  
         </form>
       </div>
+      
       <div class="cde">
         <p>Limite Aprovado</p>
         <hr style="background-color: #7284a8;">
@@ -91,11 +92,13 @@
         {% endfor %}
         <p>Lorem,  adipisicing elit.Porro odio repudiandae veritatis iure possimus rem quibusdam? Sed modi.</p>
       </div>
+      
       <div class="divBtn">
         <input onclick="toggleMenu();" type="button" style="font-weight: 500;margin: 5px;" class="solicitarEmprestimo btn btn-outline-dark" value="Solicitar Empréstimo">
         <input onclick="toggleMenu2();" style="font-weight: 500;margin: 5px;" type="button" class="btn btn-outline-dark" type="button" value="Aumentar Limite">
       </div>
     </div> 
+    
     <div style="display: none;" class="metodo_pag">
       <hr style="background-color: white;">
       <hr>
@@ -134,7 +137,6 @@
                 <hr>
                 <a href="../../../Untitled Diagram.pdf" download="Boleto.pdf" type="application/pdf"><i class="fas fa-ticket-alt"> Gerar boleto</i></a>
               </p>
-              
               <hr style="width: 40%; padding: 2px; color: #7284a8;">
               <p>Pagar boleto com</br>
                 <a href="#"><i class="fab fa-paypal"> PayPal</i></a>  |  <a href="#"><img style="width: 65px;"  src="../../static/img/logo-picpay-1024.png" alt="PicPay"></a>
@@ -142,60 +144,101 @@
             </div>
           </div>
         </form>
-    </div>
-    <div class="sss">
+      </div>
+    <div onmouseover="changeBackgroundColor()" onmouseout="backToPreviousBackgroundColor()" class="sss">
       <div onclick="toggleMenu();" class="toggle"></div>
       <h3 style="padding: 100px;">SOLICITE UM EMPRÉSTIMO</h3>  
       <hr style="background-color: white;">
       <form id="forms" method="post" action="">
         {% csrf_token %}
         <p style="margin-right: 15%; position: absolute; margin-top: -29%; font-weight: 400;" >VALOR DO EMPRÉSTIMO
-          <p class="resultado" style="font-size: 3rem; margin-right: 9%; position: absolute;margin-top: -20%;">R$ 50.000,00</p><a class="acio" href="#" onclick="setValue()" style="margin-top: -21%; color: white; margin-left: 19%; position: absolute;"><i class="fas fa-pen"></i></a>
-          <input style="margin-top: -16%;padding: 12px; width: 20%; margin-left: -3%;position: absolute;" type="number" placeholder="Novo do empréstimo" class="valor" name="valor" required="" id="id_valor"><button class="btn01 btn btn-outline-light" type="submit">Alterar</button><!--Fazer update no banco de dados-->
+          <p class="sigla" >R$</p><p class="resultado" id="resultado" style="font-size: 3rem; margin-right: 4%; position: absolute;margin-top: -20%;"> 00.000,00</p><a class="acio" href="#" onclick="setValue()" style="margin-top: -21%; color: white; margin-left: 19%; position: absolute;"><i class="fas fa-pen"></i></a>
+          <input style="margin-top: -16%;padding: 12px; width: 20%; margin-left: -3%;position: absolute;" type="number" placeholder="Novo empréstimo" class="vaalor" value="0.00" name="valor" required="" step=".01" id="id_valor">
+          <input onmouseout="calcJuros()" onmouseover="c()" onclick="setValue()" class="btn01 btn btn-outline-dark" placeholder="Valor" value="Alterar" type="button"><!--Fazer update no banco de dados-->
         </p>
         <label style="margin-left: -37%; margin-top: 30%;"for="">Escolha o tipo de empréstimo</label>
-        <select style="background-color: #212529; border: none;color: white;" class="form-select" aria-label="Default select example">
+        <select style="border: none;color: white;" class="b form-select" aria-label="Default select example">
           <option selected>Empréstimo pessoal</option>
           <option value="">Emprestimo com portabilidade de salário</option>
         </select>
         <hr>
         <label style="margin-left: -37%;" for="">Escolha o número de parcelas</label>
-        <select style="background-color: #212529; border: none; color: white; overflow: auto;" class="form-select" aria-label="Default select example">
-          <option selected>12x de R$ 11,17</option>
-          <option value="105,10">1 parcela de <b>R$ 105,10</b></option>
-          <option value="53,77">2 parcela de <b>R$ 53,77</b></option>
-          <option value="36,67">3 parcela de <b>R$ 36,67</b></option>
-          <option value="28,12">4 parcela de <b>R$ 28,12</b></option>
-          <option value="23,01">5 parcela de <b>R$ 23,01</b></option>
-          <option value="23,01">6 parcela de <b>R$ 23,01</b></option>
-          <option value="23,01">7 parcela de <b>R$ 23,01</b></option>
-          <option value="23,01">8 parcela de <b>R$ 23,01</b></option>
-          <option value="23,01">9 parcela de <b>R$ 23,01</b></option>
-          <option value="23,01">10 parcela de <b>R$ 23,01</b></option>
-          <option value="23,01">11 parcela de <b>R$ 23,01</b></option>
-          <option value="23,01">12 parcela de <b>R$ 23,01</b></option>
+        <select required="" name="qtde_Parcelas" id="id_qtde_Parcelas" style="border: none; overflow: auto;" class="a form-select" aria-label="Default select example">
+          <option class="opt" >12x de R$ 11,17</option>
+          <option value="2">2 parcelas de <b>R$ 53,77</b></option>
+          <option value="1">1 parcela de <b>R$ 105,10</b></option>
+          <option value="3">3 parcelas de <b>R$ 36,67</b></option>
+          <option value="4">4 parcelas de <b>R$ 28,12</b></option>
+          <option value="5">5 parcelas de <b>R$ 23,01</b></option>
+          <option value="6">6 parcelas de <b>R$ 23,01</b></option>
+          <option value="7">7 parcelas de <b>R$ 23,01</b></option>
+          <option value="8">8 parcelas de <b>R$ 23,01</b></option>
+          <option value="9">9 parcelas de <b>R$ 23,01</b></option>
+          <option value="10">10 parcelas de <b>R$ 23,01</b></option>
+          <option value="11">11 parcelas de <b>R$ 23,01</b></option>
+          <option value="12">12 parcelas de <b>R$ 23,01</b></option>
         </select>
         <label style="margin-left: -28%;margin-top: 14%;" for="">Escolha a data da primeira parcela</label>
-        <input style="background-color: #212529; color: white;margin-left: -53%;border-radius: 5px; padding-left: 10px; margin-top: 0%;" type="date">
+        <input name="data_Solicitacao" required="" id="id_data_Solicitacao" style="margin-left: -53%;border-radius: 5px; padding-left: 10px; margin-top: 0%;" class="data01" type="date">
         <p style="color: white; position: absolute; margin-left: -18%;margin-top: 17%; font-size: 11pt;">Juros de 4.45% ao mês</p>
-      </div>
+        <p style="position: absolute; margin-top: 34%; margin-right: -19%;">
+          Total a pagar</br>
+          <p style="position: absolute; display: inline; margin-top: 38%; margin-left: auto; margin-right: -21%; font-size: 1.5rem;" ><b class="res">0.00</b> </p>
+        </p>
         <!-- <input type="number" placeholder="Valor" name="valor" required="" id="id_valor">
         <input placeholder="Data da solicitação" type="text" name="data_Solicitacao" required="" id="id_data_Solicitacao">
         <input placeholder="Quantidade de parcelas" type="number" name="qtde_Parcelas" required="" id="id_qtde_Parcelas">
         <input placeholder="Valor da parcela" type="number" name="valor_unitario" required="" id="id_valor_unitario">
         <input placeholder="Situação do empréstimo" type="text" name="situacao" maxlength="40" required="" id="id_situacao">
-        <input onclick="met_payment()" type="submit" value="Selecionar método de pagamento" style="font-weight: 500;width: 80%; text-align: center;" class="btn btn-outline-light" value="">  -->
+          -->
+        <input type="submit" style="font-weight: 500;margin: 5px;" class="btn btn-outline-dark" value="Solicitar Empréstimo">
       </form>
     </div>
       <script>
+        function backToPreviousBackgroundColor() {
+          document.querySelector('.opt').style.background = "#000";
+          document.querySelector('.opt').style.transition = "0.5s";
+          document.querySelector('.a').style.background = "#000";
+          document.querySelector('.a').style.transition = "0.5s";
+          document.querySelector('.b').style.background = "#000";
+          document.querySelector('.b').style.transition = "0.5s";
+          document.querySelector('.data01').style.background = "#000";
+          document.querySelector('.data01').style.transition = "0.5s";
+        }
+        function changeBackgroundColor() {
+          document.querySelector('.a').style.background = "#212529";
+          document.querySelector('.a').style.transition = "0.5s";
+          document.querySelector('.b').style.background = "#212529";
+          document.querySelector('.b').style.transition = "0.5s";
+          document.querySelector('.data01').style.background = "#212529";
+          document.querySelector('.data01').style.transition = "0.5s";
+
+        }
+        function calcJuros() {
+          var valorr = document.querySelector('.vaalor').value;
+          var select = document.querySelector('.a');
+          var parcelas = parseInt(select.options[select.selectedIndex].value);
+          var valor = parseInt(valorr)
+          var percent = (valor / parcelas)
+          document.querySelector('.res').innerHTML = ((((percent * 5.1) / 100) + percent) * parcelas).toFixed(2);
+          document.querySelector('.unitario').innerHTML = ((((percent * 5.1) / 100) + percent)).toFixed(2);
+          document.querySelector('.parcelas').innerHTML = parcelas;
+          
+        }
+        function c() {
+          var count = document.querySelector('.vaalor').value;
+          document.querySelector('.resultado').innerHTML = count;
+        }
         function setValue() {
-          value = document.querySelector('.valor');
+          value = document.querySelector('.vaalor');
+          sigla = document.querySelector('.sigla');
           show = document.querySelector('.resultado')
           btn = document.querySelector('.btn01')
           a = document.querySelector('.acio')
           value.classList.toggle('active')
           btn.classList.toggle('active')
           a.classList.toggle('active')
+          sigla.classList.toggle('active')
           show.classList.toggle('active')
         }
         $(document).ready(function() {

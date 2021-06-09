@@ -25,7 +25,7 @@ class Emprestimo_Form(forms.ModelForm):
     class Meta:
         model = Emprestimo
         fields = '__all__'
-        exclude = ['valor_unitario', 'situacao']
+        exclude = ['situacao']
         
 class Formulario_Form(forms.ModelForm):
     class Meta:

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitações</title>
+    <title>Solicitações | Cliente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" href="../../static/style.css">
@@ -24,9 +24,6 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="/solicitacoes">Solicitar</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Financeiro</a>
               </li>
               <li class="nav-item dropdown">
             </ul>
@@ -53,33 +50,32 @@
       <table class="table table-dark table-hover">
           <tr class="table-active">
             <th scope="row">Código</th>
-            <th scope="row">Data</th>
+            <th scope="row">Data primeira parcela</th>
             <th scope="row">Valor</th>
             <th scope="row">Parcelas</th>
             <th scope="row">Valor Parcelas</th>
-            <th scope="row">Situação</th>
+            <th scope="row">Sobre</th>
           </tr>
           {% for dbs in db %}
-          <tr>
+          <tr id="{{dbs.id}}" >
             <th scope="row">{{dbs.id}}</th>
-            <td>{{dbs.data_Solicitacao}}</td>
-            <td>{{dbs.valor}}</td>
-            <td>{{dbs.qtde_Parcelas}}</td>
-            <td>{{dbs.valor_unitario}}</td>
-            <td>{{dbs.situacao}}</td>
+            <td class="sol" >{{dbs.data_Solicitacao}}</td>
+            <td class="val">R$ {{dbs.valor}}</td>
+            <td class="par">{{dbs.qtde_Parcelas}}</td>
+            <td class="valUn">R$ {{dbs.valor_unitario}}</td>
+            <td><input id="" onclick="pagmento()" type="button" style="font-weight: 500;margin: 5px;" class="btn btn-outline-light" value="Ver detalhes"></td>
           </tr>
           {% endfor %}
       </table>
       <div class="screenLimit">
         <form action="" method="POST">
           {% csrf_token %}
-          <h3 style="background-color: #212529; color: #fff; border-radius: 10px; text-align: center;">Novo Limite</h3>
-          <hr>
+          <h3 style="color: #212529; border-radius: 10px; text-align: center;">NOVO LIMITE</h3>
+          <hr size="5px" class="hrLimite">
           <input type="number" name="limite" value="{{j.limite}}" step="0.01" required="" id="id_limite">
           <input type="submit" style="font-weight: 500;margin: 5px;" class="btn btn-outline-dark" value="Alterar Limite">  
         </form>
       </div>
-      
       <div class="cde">
         <p>Limite Aprovado</p>
         <hr style="background-color: #7284a8;">
@@ -98,8 +94,25 @@
         <input onclick="toggleMenu2();" style="font-weight: 500;margin: 5px;" type="button" class="btn btn-outline-dark" type="button" value="Aumentar Limite">
       </div>
     </div> 
-    
-    <div style="display: none;" class="metodo_pag">
+    <div class="sobre">
+      <div onclick="pagmento();" class="toggle3"></div> 
+      <p style="margin-top: 5%; font-size: 1rem;">VALOR DO EMPRÉSTIMO</p>
+      <p style="font-size: 2.5rem;" class="pg01"></p>
+      <hr>
+      <p>Quantidade de parcelas</p>
+      <p class="pg02">12</p>
+      <hr>
+      <p>Valor da fatura</p>
+      <p class="pg03">R$ 10230</p>
+      <hr>
+      <p>Mês do pagamento</p>
+      <p class="pg04">31/10/2001</p>
+      <p class="pg05">31/10/2001</p>
+      <p style="float: right; margin-right: 5%; margin-top: -9%;">Escolha uma forma de pagamento</p>
+      <input onclick="met_payment()" class="btn btn-outline-light" type="button" value="Selecionar">
+    </div>
+    <div class="metodo_pag">
+      <div onclick="met_payment();" class="toggle2"></div>
       <hr style="background-color: white;">
       <hr>
       <form action="" method="post">
@@ -108,9 +121,9 @@
           <h5 onclick="payment()"> CARTÃO DE CRÉDITO</h5>
           <hr class="hr">
           <div class="cartao_content">
-            <p class="description_p" style="">TITULAR DO CARTÃO</p>
+            <p class="description_p">TITULAR DO CARTÃO</p>
             <input style="margin-bottom: 5%;" type="text">
-            <p class="description_p" style="">NÚMERO DO CARTÃO</p>
+            <p class="description_p">NÚMERO DO CARTÃO</p>
             <input style="margin-bottom: 5%;" type="text"><img style="margin-left: -10%;margin-top: 4%; position: absolute;"  width="25px" src="../../static/img/1200px-Old_Visa_Logo.svg.png" alt=""><img style="margin-left: -18%;margin-top: 4%; position: absolute;"  width="25px" src="../../static/img/logo-cielo.png" alt=""><img style="margin-left: -25%;margin-top: 4%; position: absolute;"  width="25px" src="../../static/img/mcbc_refeicao-rev_84px.png" alt="">
             <p class="description_p" style="font-size: 9pt;">DATA DE VALIDADE</p>
             <input style="width: 27%; padding-right: 0px; text-align: center;" placeholder="MM/AA" type="text">
@@ -125,7 +138,7 @@
             <div style="overflow: auto;">
               <p class="" style="position: relative; margin-top: 1%; margin-left: 12%; width: auto; height: 100px; ">Ao selecionar "Concordar e Solicitar" Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quia laborum, hic provident illum pariatur deserunt minima repudiandae quidem quasi tenetur consequuntur accusamus, consequatur corrupti animi suscipit veritatis id blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem odio quaerat dolore tempora dolorum, atque deleniti obcaecati incidunt vel culpa soluta.</p>
             </div>
-            <input onclick="" type="button" style="margin-left: 12%; font-weight: 500; width: 80%; margin-top: 6%; padding: 15px;" class="btn btn-outline-dark" value="Concordar e Solicitar">
+            <input onclick="" type="button" style="margin-left: 12%; font-weight: 500; width: 80%; margin-top: 6%; padding: 15px;" class="btn btn-outline-dark" value="Concordar e Definir">
           </div>
         </div>
         <div class="div_boleto" >
@@ -152,18 +165,18 @@
       <form id="forms" method="post" action="">
         {% csrf_token %}
         <p style="margin-right: 15%; position: absolute; margin-top: -29%; font-weight: 400;" >VALOR DO EMPRÉSTIMO
-          <p class="sigla" >R$</p><p class="resultado" id="resultado" style="font-size: 3rem; margin-right: 4%; position: absolute;margin-top: -20%;"> 00.000,00</p><a class="acio" href="#" onclick="setValue()" style="margin-top: -21%; color: white; margin-left: 19%; position: absolute;"><i class="fas fa-pen"></i></a>
+          <p class="sigla">R$</p><p class="resultado" id="resultado" style="font-size: 3rem; margin-right: 4%; position: absolute;margin-top: -20%;"> 00.000,00</p><a class="acio" href="#" onclick="setValue()" style="margin-top: -21%; color: white; margin-left: 19%; position: absolute;"><i class="fas fa-pen"></i></a>
           <input style="margin-top: -16%;padding: 12px; width: 20%; margin-left: -3%;position: absolute;" type="number" placeholder="Novo empréstimo" class="vaalor" value="0.00" name="valor" required="" step=".01" id="id_valor">
           <input onmouseout="calcJuros()" onmouseover="c()" onclick="setValue()" class="btn01 btn btn-outline-dark" placeholder="Valor" value="Alterar" type="button"><!--Fazer update no banco de dados-->
         </p>
-        <label style="margin-left: -37%; margin-top: 30%;"for="">Escolha o tipo de empréstimo</label>
+        <label style="margin-left: -37%; margin-top: 42%;"for="">Escolha o tipo de empréstimo</label>
         <select style="border: none;color: white;" class="b form-select" aria-label="Default select example">
           <option selected>Empréstimo pessoal</option>
           <option value="">Emprestimo com portabilidade de salário</option>
         </select>
         <hr>
-        <label style="margin-left: -37%;" for="">Escolha o número de parcelas</label>
-        <select required="" name="qtde_Parcelas" id="id_qtde_Parcelas" style="border: none; overflow: auto;" class="a form-select" aria-label="Default select example">
+        <label style="margin-left: -37%; margin-top: -2%;" for="">Escolha o número de parcelas</label>
+        <select required="" name="qtde_Parcelas" id="id_qtde_Parcelas" style="color: white; border: none; overflow: auto;" class="a form-select" aria-label="Default select example">
           <option class="opt" >12x de R$ 11,17</option>
           <option value="2">2 parcelas de <b>R$ 53,77</b></option>
           <option value="1">1 parcela de <b>R$ 105,10</b></option>
@@ -179,22 +192,57 @@
           <option value="12">12 parcelas de <b>R$ 23,01</b></option>
         </select>
         <label style="margin-left: -28%;margin-top: 14%;" for="">Escolha a data da primeira parcela</label>
-        <input name="data_Solicitacao" required="" id="id_data_Solicitacao" style="margin-left: -53%;border-radius: 5px; padding-left: 10px; margin-top: 0%;" class="data01" type="date">
-        <p style="color: white; position: absolute; margin-left: -18%;margin-top: 17%; font-size: 11pt;">Juros de 4.45% ao mês</p>
+        <input name="data_Solicitacao" required="" id="id_data_Solicitacao" style="color: white; margin-left: -53%;border-radius: 5px; padding-left: 10px; margin-top: 0%;" class="data01" type="date">
+        <p style="color: white; position: absolute; margin-left: -18%;margin-top: 16%; font-size: 11pt;"><b>Juros de 4.45% ao mês</b></p>
         <p style="position: absolute; margin-top: 34%; margin-right: -19%;">
           Total a pagar</br>
           <p style="position: absolute; display: inline; margin-top: 38%; margin-left: auto; margin-right: -21%; font-size: 1.5rem;" ><b class="res">0.00</b> </p>
         </p>
+        <input style="display: none; position: absolute;" class="unitario" placeholder="Valor da parcela" type="number" name="valor_unitario" id="id_valor_unitario">
         <!-- <input type="number" placeholder="Valor" name="valor" required="" id="id_valor">
         <input placeholder="Data da solicitação" type="text" name="data_Solicitacao" required="" id="id_data_Solicitacao">
-        <input placeholder="Quantidade de parcelas" type="number" name="qtde_Parcelas" required="" id="id_qtde_Parcelas">
+        
         <input placeholder="Valor da parcela" type="number" name="valor_unitario" required="" id="id_valor_unitario">
         <input placeholder="Situação do empréstimo" type="text" name="situacao" maxlength="40" required="" id="id_situacao">
           -->
-        <input type="submit" style="font-weight: 500;margin: 5px;" class="btn btn-outline-dark" value="Solicitar Empréstimo">
+        <input type="submit" onclick="definirValorUnitario()" style="font-weight: 500;margin: 5px; margin-right: 50%; margin-top: -1%;" class="btn btn-outline-light" value="Solicitar Empréstimo">
       </form>
     </div>
+
       <script>
+       /*  $('.value-plus').on('click', function(){ */
+       /*    var lista = $('.invert > span'); */
+       /*    $.each(lista, function(index,item){ */
+       /*      valor = $(item).text(); */
+       /*      alert(valor); */
+       /*    }); */
+       /*  }); */
+        (() => {
+          var valor = document.querySelector('.val').innerHTML;
+          var data_parcela = document.querySelector('.sol').innerHTML;
+          var qtde_par = document.querySelector('.par').innerHTML;
+          var valor_unitario = document.querySelector('.valUn').innerHTML;
+          var ul = document.getElementById("dbs.id");
+          document.querySelector('.pg01').innerHTML = valor;
+          document.querySelector('.pg02').innerHTML = qtde_par;
+          document.querySelector('.pg03').innerHTML = valor_unitario;
+          document.querySelector('.pg04').innerHTML = data_parcela;
+          document.querySelector('.pg05').innerHTML = ul;
+        })()
+        function pagmento() {
+          var about = document.querySelector('.sobre');
+          const menuToggle = document.querySelector('.toggle3');
+          about.classList.toggle('active');
+          menuToggle.classList.toggle('active');
+        }
+        function definirValorUnitario() {
+          var select = document.querySelector('.a');
+          var parcelas = parseInt(select.options[select.selectedIndex].value);
+          var valor = parseInt(valorr)
+          var percent = (valor / parcelas)
+          resultado = ((((percent * 5.1) / 100) + percent)).toFixed(2);
+          document.getElementById('qtdePc').value = resultado;
+        }
         function backToPreviousBackgroundColor() {
           document.querySelector('.opt').style.background = "#000";
           document.querySelector('.opt').style.transition = "0.5s";
@@ -212,7 +260,6 @@
           document.querySelector('.b').style.transition = "0.5s";
           document.querySelector('.data01').style.background = "#212529";
           document.querySelector('.data01').style.transition = "0.5s";
-
         }
         function calcJuros() {
           var valorr = document.querySelector('.vaalor').value;
@@ -221,9 +268,8 @@
           var valor = parseInt(valorr)
           var percent = (valor / parcelas)
           document.querySelector('.res').innerHTML = ((((percent * 5.1) / 100) + percent) * parcelas).toFixed(2);
-          document.querySelector('.unitario').innerHTML = ((((percent * 5.1) / 100) + percent)).toFixed(2);
+          document.querySelector('.unitario').value = Math.round(((((percent * 5.1) / 100) + percent))).toFixed(2);
           document.querySelector('.parcelas').innerHTML = parcelas;
-          
         }
         function c() {
           var count = document.querySelector('.vaalor').value;
@@ -251,7 +297,9 @@
         })
         function met_payment() {
           x = document.querySelector('.metodo_pag');
-          x.style.display = 'flex';
+          const menuToggle = document.querySelector('.toggle2');
+          menuToggle.classList.toggle('active');
+          x.classList.toggle('active')
         }
         function payment() {
           x = document.querySelector('.d');
@@ -263,7 +311,6 @@
           x.classList.toggle('active');
           y.classList.toggle('active');
         } 
-
         function toggleMenu2() {
           const ddd = document.querySelector('.table');
           const xxx = document.querySelector('.screenLimit')

@@ -25,9 +25,6 @@
               <li class="nav-item">
                 <a class="nav-link active" href="/solicitacoes">Solicitar</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Financeiro</a>
-              </li>
               <li class="nav-item dropdown">
             </ul>
             <form class="d-flex" method="GET">
@@ -57,6 +54,18 @@
         <hr>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa culpa ab, illo ad rem amet praesentium. Vitae sunt, facere, delectus excepturi dolore eum velit nesciunt fugiat dolor blanditiis quisquam? Nihil.</p>
       </footer>
+      <script>
+        function openPage(url) {
+          var xml = new XMLHttpRequest()
+          xml.onreadystatechange = function() {
+            if (xml.readyState == 4 && xml.status == 200) {
+              document.getElementById(target).innerHTML = xml.responseText
+            }
+          }
+          xml.open("GET", url+'.html', true)
+          xml.send()
+        }
+      </script>
       <script src="{% static 'javascript.js' %}"></script>
       
        <!-- Dropdown do bootstrap -->

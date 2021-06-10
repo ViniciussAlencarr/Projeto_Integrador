@@ -13,7 +13,7 @@ mydb = mysql.connector.connect(
   database="a"
 )
 mycursor = mydb.cursor()
-mycursor.execute("SELECT * FROM app_cliente;")
+mycursor.execute("select * from app_cliente;")
 dbResponse = mycursor.fetchone()
 
 # CARREGANDO O TEMPLATE JSON PARA REQUEST
@@ -22,9 +22,11 @@ concentreRequest = json.load(concent)
 
 credenciaisRequest = concentreRequest.get("Credenciais")
 
-credenciaisRequest["Email"] = dbResponse[9]
-credenciaisRequest["Senha"] = dbResponse[7]
-
+""" credenciaisRequest["Email"] = dbResponse[8]
+credenciaisRequest["Senha"] = dbResponse[7] """
+credenciaisRequest["Email"] = 'vinicius.alencaarr@gmail.com'
+credenciaisRequest["Senha"] = 'wcpGu8xDn'
+print(dbResponse)
 # FAZENDO REQUISIÇÃO AO SERASA
 response = requests.post(url=url, json=concentreRequest)
 response_json = json.loads(response.text)
@@ -73,9 +75,7 @@ if response_json["Status"] == True and response_json['Transacao']['CodigoStatusD
     x10 = 0
   
 else:
-  print("Deu erro") 
-
-
+  print("Deu erro")  
 
 """ if response.status_code >= 200 and response.status_code <=299:
   print('Status Code', response.status_code)
@@ -87,4 +87,4 @@ else:
   print('Status Code', response.status_code)
   print('Reason', response.reason)
   print('Text', response.text)
-  print('JSON', response.json()) """
+  print('JSON', response.json())   """

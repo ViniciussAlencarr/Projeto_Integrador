@@ -15,56 +15,51 @@
     <div id="result"></div>
     <form class="formCadastro" method="post">
       {% csrf_token %}
-      <!-- <div class="form">
-          {{form.nome.errors}}
-          <label>Nome de usuário</label>
-          {{form.nome}}
-      </div>
-      <div class="form">
-        {{form.sobrenome.errors}}
-        <label>Sobrenome</label>
-        {{form.sobrenome}}
-    </div>
-      <div class="form">
-          {{form.cnpj.errors}}
-          <label for="">CNPJ</label>
-          {{form.cnpj}}
-      </div>
-      <div class="form">
-          {{form.estado_Civil.errors}}
-          <label>Estado Cívil</label>
-          {{form.estado_Civil}}
-      </div>
-      <div class="form">
-        {{form.contato_SMS.errors}}
-        <label>SMS</label>
-        {{form.contato_SMS}}
-      </div>
-      <div class="form">
-        {{form.whatsapp.errors}}
-        <label>Whatsapp</label>
-        {{form.whatsapp}}
-      </div>
-      <div class="form">
-        {{form.email_Cliente.errors}}
-        <label>Email</label>
-        {{form.email_Cliente}}
-      </div>
-      <div class="form">
-        {{form.nome_De_Usuario.errors}}
-        <label>Nome de usuário</label>
-        {{form.nome_De_Usuario}}
-      </div>
-      <div class="form">
-        {{form.senha_Cliente.errors}}
-        <label>Senha</label>
-        {{form.senha_Cliente}}
-      </div> -->
-      {{form.as_p}}
-      <hr>
-      {{emailField}} 
+        <!-- 
+        <ul class="errorlist"><li>This field is required.</li></ul>
+  <p><label for="id_username">Username:</label> <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username"> <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span></p>
+  <ul class="errorlist"><li>This field is required.</li></ul>
+  <p><label for="id_password1">Password:</label> <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1"> <span class="helptext"></span></p><ul><li>Your password can’t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can’t be a commonly used password.</li><li>Your password can’t be entirely numeric.</li></ul><p></p>
+  <ul class="errorlist"><li>This field is required.</li></ul>
+  <p><label for="id_password2">Password confirmation:</label> <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2"> <span class="helptext">Enter the same password as before, for verification.</span></p>
+        <hr>
+        <label for="id_email">Email address:</label><input type="email" name="email" maxlength="254" id="id_email"> 
+        <div class="form-group">
+            <input type="submit" value="Cadastrar" class="btn btn-primary">
+        </div> --> 
+      <input placeholder="Username" type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" class="id_username" id="id_username">
+      <input placeholder="Password" type="password" class="id_password1" name="password1" autocomplete="new-password" required="" id="id_password1">
+      
+      <input placeholder="Confirm password" type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+      <input placeholder="Nome" type="text" name="nome" maxlength="20" required="" id="id_nome">
+      <input placeholder="Sobrenome" type="text" name="sobrenome" maxlength="20" required="" id="id_sobrenome">
+      <input placeholder="CNPJ" type="text" name="cnpj" maxlength="14" required="" id="id_cnpj">
+      <input placeholder="Estado Cívil" type="text" name="estado_Civil" maxlength="25" required="" id="id_estado_Civil">
+      <input placeholder="SMS" type="text" name="contato_SMS" maxlength="11" required="" id="id_contato_SMS">
+      <input placeholder="Whatsapp" type="text" name="whatsapp" maxlength="11" required="" id="id_whatsapp">
+      
+      <input placeholder="email" type="email" required="" name="email" maxlength="254" class="id_email" id="id_email">
+
+
+      <input style="display: none;" type="text" name="senha_Cliente" maxlength="15" class="senha_cliente" id="id_senha_Cliente">
+      <input style="display: none;" type="text" name="nome_De_Usuario" maxlength="40" class="nome_de_usuario" id="id_nome_De_Usuario">
+      <input style="display: none;" type="email" name="email_Cliente" maxlength="254" class="email_cliente" id="id_email_Cliente">
+      
+            <!-- 
+            <ul class="errorlist"><li>This field is required.</li></ul>
+      <p><label for="id_username">Username:</label> <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username"> <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span></p>
+      <ul class="errorlist"><li>This field is required.</li></ul>
+      <p><label for="id_password1">Password:</label> <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1"> <span class="helptext"></span></p><ul><li>Your password can’t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can’t be a commonly used password.</li><li>Your password can’t be entirely numeric.</li></ul><p></p>
+      <ul class="errorlist"><li>This field is required.</li></ul>
+      <p><label for="id_password2">Password confirmation:</label> <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2"> <span class="helptext">Enter the same password as before, for verification.</span></p>
+            <hr>
+            <label for="id_email">Email address:</label><input type="email" name="email" maxlength="254" id="id_email"> 
+            <div class="form-group">
+                <input type="submit" value="Cadastrar" class="btn btn-primary">
+            </div> -->
+
       <div class="form-group">
-          <input type="submit" value="Cadastrar" class="btn btn-primary">
+          <input type="submit" onclick="inserirDados()" value="Cadastrar" class="btn btn-primary">
       </div>
     </form>
   </div>
@@ -80,6 +75,15 @@
     }
   </style>  
   <script>
+    function inserirDados() {
+      let password = document.querySelector('.id_password1');
+      let email = document.querySelector('.id_email');
+      let username = document.querySelector('.id_username');
+      document.querySelector('.senha_cliente').value = password.value;
+      document.querySelector('.nome_de_usuario').value = username.value;
+      document.querySelector('.email_cliente').value = email.value;
+    }
+
     function prosseguir() {
       window.location.href = '/'
     }

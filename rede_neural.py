@@ -5,7 +5,7 @@ from pybrain3.supervised.trainers import BackpropTrainer
 import server
 
 # Create a network with two inputs, three hidden, and one output
-nn = buildNetwork(10, 3, 1, bias=True, hiddenclass=TanhLayer)
+nn = buildNetwork(10, 30, 1, bias=True, hiddenclass=TanhLayer)
 
 # Create a dataset that matches network input and output sizes:
 norgate = SupervisedDataSet(10, 1)

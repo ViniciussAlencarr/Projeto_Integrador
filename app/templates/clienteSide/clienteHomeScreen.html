@@ -10,20 +10,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" href="../../static/style.css">
 </head>
-<body>
+<body style="background-color: #fff;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/cliente">Inicio</a>
+          <a style="margin-left: 1%;" class="navbar-brand" href="/cliente">HomeScreen</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="/documentos">Documentação</a>
+                <a class="navbar-brand" href="/documentos">Documentação</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/solicitacoes">Solicitar</a>
+                <a class="navbar-brand" href="/solicitacoes">Solicitar</a>
               </li>
               <li class="nav-item dropdown">
             </ul>
@@ -31,13 +31,13 @@
               <div class="collapse navbar-collapse">
                 <ul class="nav">
                   <li class="nav-item dropdown">
-                    <a style="color: white;" class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Configurações</a>
+                    <a style="color: white;" class="navbar-brand dropdown-toggle" id="navbarDarkDropdownMenuLink" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Configurações</a>
                     <div class="dropdown-menu dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                       <a class="dropdown-item" href="#">Algo mais aqui</a>
                       <a class="dropdown-item" href="#">Algo mais aqui</a>
                       <a class="dropdown-item" href="#">Algo mais aqui</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="/logout{% if user.is_authenticated %}/{{db.id}}/{% else %}/{{aux.id}}/{% endif %}"><i class="fas fa-sign-out-alt"> Sair</i></a>
+                      <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"> Sair</i></a>
                     </div> 
                   </li>
                 </ul>
@@ -47,13 +47,43 @@
         </div>
       </nav>
       {% block content %}
-        <h1>Bem vindo Cliente ao componente Home</h1>
+      <div class="homescreen">
+        <p style="margin-top: 1%; margin-left: 2%; font-size: 1.5rem; font-weight: 250;">Bem vindo MVP eletronica</p>
+        <hr width="310px" style="margin-left: 2%;">
+        <div style="background-color: rgb(255, 255, 255); margin-left: 65%; margin-top: 5%; width: auto; height: auto; position: absolute;">
+          <h2 style="font-weight: 350;">Pontuação</h2><p style="font-size: 1.5rem; color: green; ">VERDE</p>
+          <hr width="200px" style="padding: 5px;">
+          <p style="font-size: 2rem; font-weight: 600;">Score 905</p>
+          <hr width="400px">
+          <p style="width: 400px; text-align: center;">Continue com os pagamentos em dia para que consiga solicitar empréstimos maiores e com menores taxas.</p>
+        </div>
+        <div id="donutchart" style="margin-left: 1%; width: 850px; height: 500px; position: absolute;"></div>
+      </div>
       {% endblock %}
       {% load static %}
       <footer class="footer">
         <hr>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa culpa ab, illo ad rem amet praesentium. Vitae sunt, facere, delectus excepturi dolore eum velit nesciunt fugiat dolor blanditiis quisquam? Nihil.</p>
       </footer>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['', 'Hours per Day'],
+            ['Propostas aprovadas', 20],
+            ['Propostas em análise',     11],
+            ['Propostas negadas',      2]
+          ]);
+          var options = {
+            title: 'Resumo das propostas de financiamento',
+            pieHole: 0.4,
+          };
+          var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+          chart.draw(data, options);
+        }
+      </script>
       <script>
         function openPage(url) {
           var xml = new XMLHttpRequest()

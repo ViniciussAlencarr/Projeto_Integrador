@@ -16,13 +16,10 @@ def cadastro(request):
     data = {}
     data['form'] = UserCreationForm(request.POST)
     data['emailField'] = UserModelForm()
-    if 'email' in request.POST:
-        mail = request.POST['email']
-        cliente = Cliente()
-        cliente.email_Cliente = mail
-        cliente.save()
+    data['form_user'] = Cliente_Form(request.POST)
     if data['form'].is_valid():
         data['form'].save()
+        data['form_user'].save()
         return redirect('login')
     return render(request, 'clienteSide/fichaCadastral.html', data)
         
@@ -45,7 +42,6 @@ def verificacao(nome, senha):
         user = User()
         nameUser = user.username = nome
         passwordUser = user.password = senha
-        data = Cliente.objects.create(nome_De_Usuario=nameUser, senha_Cliente=passwordUser)
     return redirect('login')
 
 def login_cliente(request):
@@ -122,16 +118,12 @@ def login_adm(request):
     return render(request, 'loginScreen.html')
 
 @login_required    
-def logout_cliente(request, pk):
-    db = Cliente.objects.get(pk = pk)
-    db.delete()
+def logout_cliente(request):
     logout(request)
     return redirect('login')
 
 @login_required    
-def logout_adm(request, pk):
-    db_adm = Administrador.objects.get(pk = pk)
-    db_adm.delete()
+def logout_adm(request):
     logout(request)
     return redirect('login')
 

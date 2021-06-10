@@ -88,12 +88,37 @@
   </div>
 </div>
 <div class="div-content">
-  <img src="../../static/img/asdsadas.png" width="152px" alt="">
-  <div style="margin-top: 7%;">
+  <div id="donutchartt" style="width: 700px; margin-left: -16%; margin-top: -8%; height: 400px;"></div>
+  <div style="z-index: 1000; position: absolute; margin-top: -5%; width: 500px;">
     <h3>Você já enviou 65% da documentação necessaria para a análise de crédito</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi eum sit laboriosam, reprehenderit quia illum, nam saepe sunt eveniet omnis perspiciatis at magnam voluptatibus explicabo temporibus sed illo ipsam. Nisi?</p>
 </div>
 </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Entregue',     65],
+          ['Faltante',     45],
+         
+        ]);
+
+        var options = {
+          pieHole: 0.5,
+          pieSliceTextStyle: {
+            color: 'black',
+          },
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchartt'));
+        chart.draw(data, options);
+      }
+    </script>
+
 <script>
   function toggleMenu() {
     const menuToggle = document.querySelector('.toggle');

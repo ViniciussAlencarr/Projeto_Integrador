@@ -7,7 +7,21 @@
 }
 .content {
     max-width: max-content;
-}   
+    
+} 
+
+.formCadastro {
+    background-color: #212529;
+    margin-top: 10%;
+}
+
+.formCadastro input {
+    background-color: #212529;
+    border: none;
+    color: white;
+    margin: 3%;
+}
+
 .sobre {
     width: 866px;
     height: 470px;
@@ -23,6 +37,11 @@
     margin-top: 8%;
     box-shadow: -15px -15px 15px rgba(0,0,0,0.1),
                 15px 15px 15px rgba(0,0,0,0.1);
+}
+.p123 {
+    position: absolute;
+    font-weight: 300;
+    color: #fff;
 }
 .sobre p {
     margin-left: 10%;

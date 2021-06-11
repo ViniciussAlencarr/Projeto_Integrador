@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+import rede_neural
+import server
 
 # Create your views here.
 def splashScreen(request):    
@@ -22,7 +24,12 @@ def cadastro(request):
         data['form_user'].save()
         return redirect('login')
     return render(request, 'clienteSide/fichaCadastral.html', data)
-        
+
+def analise(request):
+    data = {}
+    rede_neural.iniciarAnalise()
+    data['resultadoAnalise'] = server.a
+
 @login_required
 def homeAdm(request):
     data = {}

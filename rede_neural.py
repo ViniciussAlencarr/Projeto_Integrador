@@ -28,25 +28,32 @@ norgate.addSample((0,0,1,1,1,0,0,0,0,0), (0,))
 #Training the network with dataset norgate.
 trainer = BackpropTrainer(nn, norgate)
 
-# will run the loop 1000 times to train it.
-for i in range(1, 50000):
-  erro = trainer.train()
-  if i % 1000 == 0:
-    print("Erro: %s" % erro)
-resultado = nn.activate([server.x1,
-server.x2,
-server.x3,
-server.x4,
-server.x5,
-server.x6,
-server.x7,
-server.x8,
-server.x9,
-server.x10])
+status = ''
 
-if resultado >= 1.00000000:
-  print("Crédito aprovado")
-  print(resultado)
-else:
-  print("Crédito recusado")  
-  print(resultado) 
+# will run the loop 1000 times to train it.
+def iniciarAnalise():
+  print('Iniciando...')
+  for i in range(1, 3000):
+    status = 'Em análise'
+    erro = trainer.train()
+    if i % 1000 == 0:
+      print("Erro: %s" % erro)
+  resultado = nn.activate([server.x1,
+  server.x2,
+  server.x3,
+  server.x4,
+  server.x5,
+  server.x6,
+  server.x7,
+  server.x8,
+  server.x9,
+  server.x10])
+
+  if resultado >= 1.00000000:
+    print("Crédito aprovado")
+    status = 'Aprovado'
+    print(resultado)
+  else:
+    print("Crédito recusado")  
+    status = 'Recusado'
+    print(resultado)  

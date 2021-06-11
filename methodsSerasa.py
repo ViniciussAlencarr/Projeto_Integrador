@@ -7,18 +7,15 @@ mydb = mysql.connector.connect(
   database="a"
 )
 mycursor = mydb.cursor()
-mycursor.execute("SELECT * FROM app_resultado;")
-dbResponse = mycursor.fetchone()
-
+mycursor.execute("SELECT * FROM app_resultado;")  
+dbResponse = mycursor.fetchone() 
 score = dbResponse[1] # score do cliente pego diretamente do banco dde dados na tabela 'app_resultado'
-
+aux = score
 def totalOcorrencias(value):
     if value >= 0:
-        score+100
         return True
     else:
-        score-50
-        return False
+        return False 
     
 def valorTotalOcorrencias(value):
     if value == '0,00':
@@ -46,10 +43,10 @@ def restricoesFinanceiras(value, value02):
 
 def pendenciasFinanceiras(value, value02):
     if value == 0 and value02 == 'NAO CONSTAM OCORRENCIAS':
-        score+150
+        score =+150
         return True
     else:
-        score-100
+        score =-100
         return False
 
 def pendenciasBacen(value, value02, value03):
@@ -90,12 +87,4 @@ def convemDevedores(value, value02):
         return True
     else:
         score-100
-        return False
-
-def participacoesFalencias(value, value02, value03):
-    if value == 0 and value02 == None and value03 == 'NAO CONSTAM OCORRENCIAS':
-        score+250
-        return True
-    else:
-        score-150
         return False

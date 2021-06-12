@@ -18,7 +18,7 @@
     <div id="result"></div>
     <form class="formCadastro" method="post">
       {% csrf_token %}
-      <input placeholder="Username" onclick="showout()" type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" class="id_username" id="id_username">
+      <input placeholder="Username" type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" class="id_username" id="id_username">
       <input placeholder="Password" type="password" class="id_password1" name="password1" autocomplete="new-password" required="" id="id_password1">
       <input placeholder="Confirm password" type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
       <input placeholder="Nome" type="text" name="nome" maxlength="20" required="" id="id_nome">
@@ -27,12 +27,12 @@
       <input placeholder="Estado Civil" type="text" name="estado_Civil" maxlength="25" required="" id="id_estado_Civil">
       <input placeholder="SMS" type="text" name="contato_SMS" maxlength="11" required="" id="id_contato_SMS">
       <input placeholder="Whatsapp" type="text" name="whatsapp" maxlength="11" required="" id="id_whatsapp">
-      <input placeholder="email" type="email" required="" name="email" maxlength="254" class="id_email" id="id_email">
+      <input onmouseover="inserirDados()" placeholder="email" type="email" required="" name="email" maxlength="254" class="id_email" id="id_email">
       <input style="display: none;" type="text" name="senha_Cliente" maxlength="15" class="senha_cliente" id="id_senha_Cliente">
       <input style="display: none;" type="text" name="nome_De_Usuario" maxlength="40" class="nome_de_usuario" id="id_nome_De_Usuario">
       <input style="display: none;" type="email" name="email_Cliente" maxlength="254" class="email_cliente" id="id_email_Cliente">
       <hr>
-      <input type="submit" style="font-weight: 500;margin: 5px; width: 100%;" class="btn btn-outline-light" value="Cadastrar">  
+      <input type="submit" style="font-weight: 500;margin: 5px; width: 100%;" class="btn btn-outline-light" value="Cadastrar"> 
       </form>
   </div>
   <style>

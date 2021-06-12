@@ -1,4 +1,4 @@
-{% extends 'admSide/admHomeScreen.html' %}
+{% extends 'adm/admHomeScreen.html' %}
 
 {% block title %}Visualização{% endblock %}
 
@@ -31,4 +31,10 @@
     </tbody>
   </table>          
 </div>
+{% for ss in s %}
+{{ss.id}}
+{{ss.valor}}
+{{ss.id}}
+
+{% endfor %}
 {% endblock %}

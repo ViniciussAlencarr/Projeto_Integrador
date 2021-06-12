@@ -22,14 +22,14 @@ concentreRequest = json.load(concent)
 
 credenciaisRequest = concentreRequest.get("Credenciais")
 
-credenciaisRequest["Email"] = dbResponse[9]
-credenciaisRequest["Senha"] = dbResponse[7]  
+""" credenciaisRequest["Email"] = dbResponse[9]
+credenciaisRequest["Senha"] = dbResponse[7]  """
 
 # FAZENDO REQUISIÇÃO AO SERASA
 response = requests.post(url=url, json=concentreRequest)
 response_json = json.loads(response.text)
 
-if response_json["Status"] == True and response_json['Transacao']['CodigoStatusDescricao'] == 'Transacao realizada com sucesso':
+""" if response_json["Status"] == True and response_json['Transacao']['CodigoStatusDescricao'] == 'Transacao realizada com sucesso':
   print("Tudo OK!")
   a = mts.score
   if mts.totalOcorrencias(response_json['TotalOcorrencias']) == 'True':
@@ -94,8 +94,8 @@ if response_json["Status"] == True and response_json['Transacao']['CodigoStatusD
     a -= 100
 else:
   print("Deu erro") 
-
-""" if response.status_code >= 200 and response.status_code <=299:
+ """
+if response.status_code >= 200 and response.status_code <=299:
   print('Status Code', response.status_code)
   print('Reason', response.reason)
   print('Text', response.text)
@@ -105,4 +105,4 @@ else:
   print('Status Code', response.status_code)
   print('Reason', response.reason)
   print('Text', response.text)
-  print('JSON', response.json())  """  
+  print('JSON', response.json())  

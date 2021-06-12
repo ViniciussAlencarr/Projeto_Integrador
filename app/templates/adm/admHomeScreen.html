@@ -18,13 +18,13 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="/cadastrar_usuario">Clientes</a>
+                <a class="nav-link active" href="/clientes">Clientes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/form_User">Solicitações</a>
+                <a class="nav-link active" href="#">Solicitações</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/form_User">Financeiro</a>
+                <a class="nav-link active" href="#">Financeiro</a>
               </li>
               <li class="nav-item dropdown">
             </ul>
@@ -43,8 +43,6 @@
                   </li>
                 </ul>
               </div>
-              <input class="form-control me-2" type="search" placeholder="Buscar cliente.." placeholder="Search" name="search" id="search" aria-label="Search">
-              <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
           </div>
         </div>
@@ -85,7 +83,6 @@
           </tbody>
           {% endfor %}
         </table>
-        {{ resultadoAnalise }}
       </div>
       {% endblock %}    
       <style>

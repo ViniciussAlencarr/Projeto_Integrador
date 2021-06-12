@@ -19,16 +19,17 @@ def cadastro(request):
     data['form'] = UserCreationForm(request.POST)
     data['emailField'] = UserModelForm()
     data['form_user'] = Cliente_Form(request.POST)
-    if data['form'].is_valid():
-        data['form'].save()
+    if data['form_user'].is_valid():
         data['form_user'].save()
-        return redirect('login')
+        if data['form'].is_valid():
+            data['form'].save() 
+            return redirect('login')
     return render(request, 'clienteSide/fichaCadastral.html', data)
 
-def analise(request):
+""" def analise(request):
     data = {}
     rede_neural.iniciarAnalise()
-    data['resultadoAnalise'] = server.a
+    return render(request, 'adm/admHomeScreen.html', data) """
 
 @login_required
 def homeAdm(request):
@@ -87,6 +88,8 @@ def delete(request, pk):
 def view(request, pk):
     data = {}
     data['db'] = Cliente.objects.get(pk = pk)
+    data['v'] = Emprestimo.objects.get(id_Cliente = pk)
+    data['s'] = data['v']
     return render(request, 'adm/visualizarCliente.html', data)
 
 @login_required
@@ -169,3 +172,14 @@ def docs(request):
          data['form'].save() 
          return redirect('docs') 
     return render(request, 'clienteSide/documentos.html', data)
+
+@login_required
+def adm_Cliente(request):
+    data = {}
+    data['db'] = Administrador.objects.order_by('id')[0]
+    search = request.GET.get('search')
+    if (search):
+        data['db'] = Cliente.objects.filter(nome__icontains = search)
+    else:
+        data['db'] = Cliente.objects.all()
+    return render(request, 'adm/clientes.html', data)

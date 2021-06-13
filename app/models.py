@@ -16,6 +16,7 @@ class Cliente(models.Model):
     email_Cliente = models.EmailField()
 
 class Emprestimo(models.Model):
+    nomeCliente = models.CharField(max_length=40)
     valor = models.IntegerField()
     data_Solicitacao = models.DateField()
     qtde_Parcelas = models.IntegerField()
@@ -49,6 +50,7 @@ class Endereco_Empresa_Cliente(models.Model):
 
 class Formulario(models.Model):
     id_Cliente = models.OneToOneField(Cliente, null=True, on_delete=models.CASCADE, default=None) # chave estrangeira da classe Cliente
+    nomeCliente = models.CharField(max_length=40)
     id_Endereco_Empresa = models.ForeignKey(Endereco_Empresa_Cliente, null=True, on_delete=models.CASCADE, default=None) # chave estrangeira da classe Endereco_Empresa_Cliente
     balancos = models.CharField(max_length=200)
     faturamento_Anual = models.DecimalField(default=0.00, max_digits=60, decimal_places=2)

@@ -88,7 +88,6 @@
         {% endfor %}
         <p>Lorem,  adipisicing elit.Porro odio repudiandae veritatis iure possimus rem quibusdam? Sed modi.</p>
       </div>
-      
       <div class="divBtn">
         <input onclick="toggleMenu();" type="button" style="font-weight: 500;margin: 5px;" class="solicitarEmprestimo btn btn-outline-dark" value="Solicitar Empréstimo">
         <input onclick="toggleMenu2();" style="font-weight: 500;margin: 5px;" type="button" class="btn btn-outline-dark" type="button" value="Aumentar Limite">
@@ -158,6 +157,8 @@
           </div>
         </form>
       </div>
+      <p style="display: none;" class="requestUser">{{request.user}}</p>
+      {{vinicius}}
     <div onmouseover="changeBackgroundColor()" onmouseout="backToPreviousBackgroundColor()" class="sss">
       <div onclick="toggleMenu();" class="toggle"></div>
       <h3 style="padding: 100px;">SOLICITE UM EMPRÉSTIMO</h3>  
@@ -199,6 +200,7 @@
           <p style="position: absolute; display: inline; margin-top: 38%; margin-left: auto; margin-right: -21%; font-size: 1.5rem;" ><b class="res">0.00</b> </p>
         </p>
         <input style="display: none; position: absolute;" class="unitario" placeholder="Valor da parcela" type="number" name="valor_unitario" id="id_valor_unitario">
+        <input style="display: none;" type="text" name="nomeCliente" maxlength="40" required="" class="id_nomeCliente" id="id_nomeCliente">
         <!-- <input type="number" placeholder="Valor" name="valor" required="" id="id_valor">
         <input placeholder="Data da solicitação" type="text" name="data_Solicitacao" required="" id="id_data_Solicitacao">
         
@@ -272,8 +274,10 @@
           document.querySelector('.parcelas').innerHTML = parcelas;
         }
         function c() {
+          var user = document.querySelector('.requestUser');
           var count = document.querySelector('.vaalor').value;
           document.querySelector('.resultado').innerHTML = count;
+          document.querySelector('.id_nomeCliente').value = user.innerHTML;
         }
         function setValue() {
           value = document.querySelector('.vaalor');

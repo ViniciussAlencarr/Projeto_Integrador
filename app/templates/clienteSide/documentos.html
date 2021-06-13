@@ -56,13 +56,14 @@
       <input style="width: 100%; font-weight: 400; margin-top: 0%;" class="btn btn-outline-dark" type="button" onclick="toggleMenu()" value="Preencher Formulário">
       {% endif %}
     </div>
+    <p style="display: none;" class="requestUser">{{request.user}}</p>
     <div class="div_content">
-      <div  onclick="toggleMenu();" class="toggle"></div>
+      <div onclick="toggleMenu();" class="toggle4"></div>
   <div class="row">
-    <form id="forms" method="post" action="">
+    <form style="z-index: 1000;" id="forms" method="post" action="">
       {% csrf_token %}
       <label for="exampleFormControlInput1" class="form-label">Balanços</label>
-      <input type="text" name="balancos" placeholder="Valor dos balanços" maxlength="200" required="" id="id_balancos">
+      <input onmouseover="c()" type="text" name="balancos" placeholder="Valor dos balanços" maxlength="200" required="" id="id_balancos">
       <label for="exampleFormControlInput1" class="form-label">Faturamento Anual</label>
       <input type="number" placeholder="Faturamento anual" name="faturamento_Anual" step="0.01" required="" id="id_faturamento_Anual">
       <label for="exampleFormControlInput1" class="form-label">Contrato Social</label>
@@ -82,16 +83,17 @@
       <label for="exampleFormControlInput1" class="form-label">Receita Operacional</label>
       <input type="text" placeholder="Receita Operacional" name="receita_Operacional" required="" id="id_receita_Operacional">
       <label for="exampleFormControlInput1" class="form-label">Valores Contabeis</label>
-      <input type="text" placeholder="Valores Contabéis" name="doc_Valores_Contabeis" maxlength="40" required="" id="id_doc_Valores_Contabeis"> 
+      <input type="text" placeholder="Valores Contabéis" name="doc_Valores_Contabeis" maxlength="40" required="" id="id_doc_Valores_Contabeis">  
+      <input style="display: none;" type="text" name="nomeCliente" maxlength="40" required="" class="id_nomeCliente" id="id_nomeCliente">
       <input type="submit" value="Solicitar" style="font-weight: 500;margin: 5px; padding-left: 50px; margin-top: 30px;" class="btn btn-outline-light" value="Solicitar Empréstimo"> 
     </form>
   </div>
 </div>
 <div class="div-content">
-  <div id="donutchartt" style="width: 700px; margin-left: -16%; margin-top: -8%; height: 400px;"></div>
-  <div style="z-index: 1000; position: absolute; margin-top: -5%; width: 500px;">
-    <h3>Você já enviou 65% da documentação necessaria para a análise de crédito</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi eum sit laboriosam, reprehenderit quia illum, nam saepe sunt eveniet omnis perspiciatis at magnam voluptatibus explicabo temporibus sed illo ipsam. Nisi?</p>
+  <div id="donutchartt" style="width: 400px; margin-left:8%; margin-top: -13%; height: 350px;"></div>
+  <div style="z-index: 100; margin-top: 2%; width: 500px;">
+    <h3 style="z-index: 100;" >Você já enviou 100% da documentação necessaria para a análise de crédito</h3>
+    <p style="z-index: 100;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi eum sit laboriosam, reprehenderit quia illum, nam saepe sunt eveniet omnis perspiciatis at magnam voluptatibus explicabo temporibus sed illo ipsam. Nisi?</p>
 </div>
 </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -101,8 +103,8 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Entregue',     65],
-          ['Faltante',     45],
+          ['Entregue',     100],
+          ['Faltante',     0],
          
         ]);
 
@@ -120,10 +122,13 @@
     </script>
 
 <script>
+  function c() {
+    var user = document.querySelector('.requestUser');
+    document.querySelector('.id_nomeCliente').value = user.innerHTML;
+  }
   function toggleMenu() {
-    const menuToggle = document.querySelector('.toggle');
+    const menuToggle = document.querySelector('.toggle4');
     const sss = document.querySelector('.div_content');
-    sss.style.display = "block";
     menuToggle.classList.toggle('active');
     sss.classList.toggle('active');
   }

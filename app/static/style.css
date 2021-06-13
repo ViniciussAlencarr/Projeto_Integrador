@@ -365,22 +365,26 @@ body {
     background-color: rgba(255, 255, 255, 0.5);
 }
 .div_content {
-    display: none;
     /* overflow-y: scroll; */
     position: absolute;
-    right: 30px;
+    right: 100%;
+    top: 50px;
     width: calc(50% - 0px);
     justify-content: center;
     align-items: center;
     font-weight: 100;
     color: #fff;
-    background-color: rgb(0, 0, 0);
+    background-color: #212529;
     transition: 0.5s;
     z-index: 100;
     border: 2px 2px 2px white;
 }
+.div_content.active, .toggle4.active {
+    right: 0%;
+    transition: 0.5s;
+}
 
-.div_content.active,.toggle.active, .toggle2.active {
+.toggle.active, .toggle2.active {
     right: 100%;
 } 
 
@@ -420,6 +424,30 @@ body {
     margin-right: -50%;
     transition: 0.5s;
 } */
+
+.toggle4 {
+    border-radius: 20px;
+    position: fixed;
+    /* op: 50px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    right: 100%; */
+    width: 50px;
+    height: 50px;
+    transition: 0.5s;
+    right: 100%;
+
+    background: url(img/75519.png); 
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: -15px -15px 15px rgba(49, 48, 48, 0.1),
+                15px 15px 15px rgba(0,0,0,0.1);
+}
+
 .toggle3 {
     border-radius: 20px;
     position: fixed;
@@ -478,7 +506,7 @@ body {
                 15px 15px 15px rgba(0,0,0,0.1);
 }
 
-.div_content:hover,.toggle:hover, .toggle2.active {
+.toggle:hover, .toggle2.active {
     background-color: #212529;
 }
 

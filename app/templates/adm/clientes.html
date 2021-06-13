@@ -1,6 +1,6 @@
 {% extends 'adm/admHomeScreen.html' %}
 
-{% block title %}Visualização{% endblock %}
+{% block title %}Adm | Visualização{% endblock %}
 
 {% block content %}
 <form style="width: 52%; margin-left: 39%; margin-top: 10%; " class="formCliente" action="" method="GET">
@@ -15,7 +15,7 @@
         <th scope="row">Sobrenome</th>
         <th scope="row">CNPJ</th>
         <th scope="row">Email de contato</th>
-        <th style="background-color: #111213;" scope="row"></th>
+        <th scope="row"></th>
       </tr>
     </thead>
     <tbody>
@@ -27,7 +27,7 @@
         <td>{{dbs.sobrenome}}</td>
         <td>{{dbs.cnpj}}</td>
         <td>{{dbs.email_Cliente}}</td>
-        <td style="background-color: #111213;">
+        <td>
           <!-- <a style="margin-left: 5%;" href="/delete/{{dbs.id}}/" class="btn btn-outline-light btn-del">Remover</a>
           <a href="/view/{{dbs.id}}/" class="btn btn-outline-light">Visualizar</a></td>    -->
           <ul class="nav">
@@ -35,7 +35,7 @@
               <a style="color: #ffffff; text-decoration: none; width: 20%;" class="dropdown-toggle" id="navbarDarkDropdownMenuLink" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Opções</a>
               <div class="dropdown-menu dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 <a style="width: 60%; text-decoration: none;" class="dropdown-item btn btn-outline-light" href="/view/{{dbs.id}}/">Visualizar</a>
-                <a style="width: 60%; text-decoration: none;" class="dropdown-item btn btn-outline-light" href="/delete/{{dbs.id}}/">Remover</a>
+                <a style="width: 60%; text-decoration: none;" class="dropdown-item btn btn-outline-light btn-del" href="/delete/{{dbs.id}}/">Remover</a>
               </div> 
             </li>
           </ul>

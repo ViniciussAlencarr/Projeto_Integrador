@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+import x
 """ import rede_neural
 import server """
 
@@ -88,8 +89,6 @@ def delete(request, pk):
 def view(request, pk):
     data = {}
     data['db'] = Cliente.objects.get(pk = pk)
-    data['v'] = Emprestimo.objects.get(id_Cliente = pk)
-    data['s'] = data['v']
     return render(request, 'adm/visualizarCliente.html', data)
 
 @login_required
@@ -140,13 +139,15 @@ def logout_adm(request):
 @login_required
 def solicitacoes(request):
     data = {}
-    data['db'] = Emprestimo.objects.all()
+    nome = User.objects.get(username=request.user.username) 
+    data['db'] = Emprestimo.objects.filter(nomeCliente=nome)
     aux = Pagamento.objects.order_by('limite')[0]
     data['form'] = Emprestimo_Form(request.POST)
     data['valor_limite'] = Pagamento.objects.all()
     data['id_'] = Pagamento.objects.order_by('id')[0]
     data['limite'] = Pagamentos_Form(request.POST or None, instance=data['id_'])
     data['j'] = aux
+    data['iniciar'] = User.objects.all()
     # formulário solicitação de empréstimo
     if data['form'].is_valid():
         data['form'].save()
@@ -163,6 +164,7 @@ def solicitacoes(request):
 def docs(request):
     data = {}
     try:
+        data['iniciar'] = User.objects.all()
         data['db'] = Formulario.objects.order_by('id')
         data['search'] = request.GET.get('search')
     except:

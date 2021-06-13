@@ -7,8 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-import rede_neural
-import server
+""" import rede_neural
+import server """
 
 # Create your views here.
 def splashScreen(request):    

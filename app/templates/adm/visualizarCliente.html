@@ -1,40 +1,86 @@
 {% extends 'adm/admHomeScreen.html' %}
-
 {% block title %}Visualização{% endblock %}
 
 {% block content %}
-<div class="col-8 m-auto pt-4 text-center">
-  <h1>Visualização</h1>
-  <hr>
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Sobrenome</th>
-        <th scope="col">CNPJ</th>
-        <th scope="col">Estado Civil</th>
-        <th scope="col">WhatsApp</th>
-        <th scope="col">CNPJ</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">{{db.id}}</th>
-            <td>{{db.nome}}</td>
-            <td>{{db.sobrenome}}</td>
-            <td>{{db.cnpj}}</td>
-            <td>{{db.estado_Civil}}</td>
-            <td>{{db.contato_SMS}}</td>
-            <td>{{db.whatsapp}}</td> 
-      </tr>
-    </tbody>
-  </table>          
+<div style="width: 700px; height: 470px;">
+  <p style="margin-left: 5%; margin-top: 5%;">NOME DO CLIENTE</p>
+  <p style="margin-left: 5%; font-weight: 500; font-size: 2rem;">{{db.nome}} {{db.sobrenome}}</p>
+  <hr style="margin-left: 5%; padding: 2px;" width="90%">
+  <p style="margin-left: 74%; font-weight: 600; font-size: 9pt;">CÓDIGO DO CLIENTE {{db.id}}</p>
+  <p style="margin-left: 5%; font-weight: 100;">CNPJ</p>
+  <p style="margin-left: 5%; font-weight: 400;">{{db.cnpj}}</p>
+  <hr style="margin-left: 5%;" width="90%">
+  <p style="margin-left: 5%; font-weight: 500; font-size: 1.5rem;">Contato</p>
+  <p style="margin-left: 5%;"><i class="fas fa-envelope"></i> {{db.email_Cliente}}</p>
+  <p style="margin-left: 5%;"><i class="fas fa-phone"></i> {{db.contato_SMS}}</p>
+  <p style="margin-left: 5%;"><i class="fab fa-whatsapp"></i> {{db.whatsapp}}</p>
 </div>
-{% for ss in s %}
-{{ss.id}}
-{{ss.valor}}
-{{ss.id}}
+<hr>
+<div style="float: right; width: 654px; height: 600px; margin-top: -1%;">
+  <p style="margin-top: 2%; margin-left: 8%; position: absolute; z-index: 1000;">ENVIO DA DOCUMENTAÇÃO DO CLIENTE</p>
+  <div id="donutchart" style="width: 600px; height: 300px; margin-left: 8%; margin-top: 0%;"></div>
+</div>
+<div style="float: left; width: 700px; height: 600px;">
+  <p style="font-weight: 400; margin-left: 30%;">PREVISÃO DO PERFIL DO CLIENTE</p>
+  <div id="top_x_div" style="height: 300px; margin-left: 2%;"></div> 
+</div>
+<div style="color: #fff; margin-left: 700px; margin-top: -40%; width: 654px; height: 525px; background-color: #212529;">
+  <p style="margin-left: 3%; margin-top: 2%; font-size: 1.7rem; position: absolute;">Descrição dos empréstimos solicitados</p>
+  <p style="color: #666666c4; margin-left: 3%; font-weight: 600; font-size: 9pt; position: absolute; margin-top: 7%;">QUANTIDADE DE EMPRÉSTIMOS 2</p>
+    <table style="margin-left: 3%; width: 505px; margin-top: 10%; position: absolute;" class="table table-dark table-borderless">
+      <tr>
+        <th scope="row">Código</th>
+        <th scope="row">Data de pagamento</th>
+        <th scope="row">Valor</th>
+        <th scope="row">Parcelas</th>
+        <th scope="row">Parcela</th>
+      </tr>
+      {% for dbs in emprestimo %}
+      <tr>
+        <td>{{dbs.id}}</td>
+        <td>{{dbs.data_Solicitacao}}</td>
+        <td>{{dbs.valor}}</td>
+        <td>{{dbs.qtde_Parcelas}}</td>
+        <td>{{dbs.valor_unitario}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Enviado', 2],
+          ['Pendentes',    7]
+        ]);
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data);
+      }
 
-{% endfor %}
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['', ''],
+          ["Pagamento em dia", 39],
+          ["Pagamento em atraso", 31],
+          ["Inadimplencia", 10],
+        ]);
+
+        var options = {
+          width: 650,
+          legend: { position: 'none' },
+          bars: 'horizontal', // Required for Material Bar Charts.
+          bar: { groupWidth: "10%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        chart.draw(data, options);
+      };
+    </script>
+
 {% endblock %}

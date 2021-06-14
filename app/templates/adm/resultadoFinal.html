@@ -1,0 +1,61 @@
+{% extends 'adm/admHomeScreen.html' %}
+
+{% block title %}Adm | Solicitações Clientes{% endblock %}
+
+{% block content %}
+<div id="columnchart_values" style="width: 400px; height: 300px;"></div>
+<div style="width: 700px; height: 400px; position: absolute;margin-left: 48%;margin-top: -18%;">
+    {% for dbs in emprestimo %}
+    <p style="margin-top: 6%;">Nome do cliente</p>
+    <p style="font-size: 2rem;">{{dbs.nomeCliente}}</p>
+    <p style="margin-left: 50%; position: absolute; margin-top: -14%;">VALOR SOLICITADO</p>
+    <p style="font-weight: 600; margin-left: 50%; font-size: 2rem; position: absolute; margin-top: -9%;">{{dbs.valor}}</p>
+    <hr width="510px">
+    <p>Detalhes do empréstimo</p>
+    <hr width="180px" style="padding: 2px;">
+    <p>Data do pagamento</p>
+    <p style="font-weight: 600;">{{dbs.data_Solicitacao}}</p>
+    <p style="position: absolute; margin-left: 50%; margin-top: -11%;">Valor das parcelas</p>
+    <p style="font-weight: 600; position: absolute; margin-left: 50%; margin-top: -6%;">{{dbs.valor_unitario}}</p>
+    <hr width="510px">
+    <p style="position: absolute; margin-left: 50%; margin-top: 0%;">Quantidade de parcelas</p>
+    <p style="position: absolute; margin-left: 50%; margin-top: 5%;">{{dbs.qtde_Parcelas}}</p>
+    {% endfor %}
+</div>
+<div style="margin-left: 70%; margin-top: 15%; color: white;">
+    <input style="margin: 10px" type="button" class="btn btn-outline-dark" value="Recusar">
+    <input type="button" class="btn btn-outline-dark" value="Aprovar">
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Porcentagem", { role: "style" } ],
+        ["Em dia", 8, "green"],
+        ["Atrasar", 10, "yellow"],
+        ["Inadimplente", 2, "red"],
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Previsão de comportamentos do cliente",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+
+  </script>
+{% endblock %}

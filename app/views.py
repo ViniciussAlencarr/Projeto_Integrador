@@ -86,9 +86,10 @@ def delete(request, pk):
     return redirect('homeAdm')
 
 @login_required
-def view(request, pk):
+def view(request, pk, username):
     data = {}
     data['db'] = Cliente.objects.get(pk = pk)
+    data['emprestimo'] = Emprestimo.objects.filter(nomeCliente=username) 
     return render(request, 'adm/visualizarCliente.html', data)
 
 @login_required
@@ -185,3 +186,17 @@ def adm_Cliente(request):
     else:
         data['db'] = Cliente.objects.all()
     return render(request, 'adm/clientes.html', data)
+
+@login_required
+def solicitacoesAdm(request):
+    data = {}
+    data['emprestimo'] = Emprestimo.objects.all()
+    return render(request, 'adm/solicitacoes.html', data)
+
+
+@login_required
+def resultadoFinal(request, pk):
+    data = {}
+    data['cliente'] = Cliente.objects.all()
+    data['emprestimo'] = Emprestimo.objects.filter(pk=pk) 
+    return render(request, 'adm/resultadoFinal.html', data)

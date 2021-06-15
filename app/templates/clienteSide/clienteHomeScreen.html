@@ -51,9 +51,10 @@
         <p style="margin-top: 1%; margin-left: 2%; font-size: 1.5rem; font-weight: 250;">Bem vindo MVP eletronica</p>
         <hr width="310px" style="margin-left: 2%;">
         <div style="background-color: rgb(255, 255, 255); margin-left: 65%; margin-top: 5%; width: auto; height: auto; position: absolute;">
-          <h2 style="font-weight: 350;">Pontuação</h2><p style="font-size: 1.5rem; color: green; ">VERDE</p>
+          <p style="display: none;" class="status">{{status}}</p>
+          <h2 style="font-weight: 350;">Pontuação</h2><p class="statusResponse" style="font-size: 1.5rem;"></p>
           <hr width="200px" style="padding: 5px;">
-          <p style="font-size: 2rem; font-weight: 600;">Score 905</p>
+          <p style="font-size: 2rem; font-weight: 600;">Score {{score}}</p>
           <hr width="400px">
           <p style="width: 400px; text-align: center;">Continue com os pagamentos em dia para que consiga solicitar empréstimos maiores e com menores taxas.</p>
         </div>
@@ -85,6 +86,13 @@
         }
       </script>
       <script>
+        (() => {
+          var s = document.querySelector('.status');
+          var x = document.querySelector('.statusResponse').innerHTML;
+          document.querySelector('.statusResponse').innerHTML = s.innerHTML;
+
+          
+        })()
         function openPage(url) {
           var xml = new XMLHttpRequest()
           xml.onreadystatechange = function() {

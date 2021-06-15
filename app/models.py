@@ -28,7 +28,10 @@ class Pagamento(models.Model):
     form_Pag = models.CharField(max_length=20)
 
 class Resultado(models.Model):
-    id_Cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, default=None)
+    id_Cliente = models.ForeignKey(Cliente, null=True, on_delete=models.CASCADE, default=None)
+    nomeCliente = models.CharField(max_length=40)
+    pagamento_em_dia = models.IntegerField()
+    inadimplencia = models.IntegerField()
     score_Cliente = models.IntegerField()
 
 class Cliente_Pagamento(models.Model):
@@ -63,6 +66,7 @@ class Formulario(models.Model):
     doc_Declaracao_IR = models.CharField(max_length=60)
     receita_Operacional = models.CharField(max_length=200)
     doc_Valores_Contabeis = models.CharField(max_length=40)
+    envioDocs = models.IntegerField()
 
 class Tipo_Telefone(models.Model):
     tipo_Telefone = models.CharField(max_length=15)
@@ -94,6 +98,10 @@ class Agencia(models.Model):
     qtde_Func = models.IntegerField()
     qtde_Dep = models.IntegerField()
     qtde_Anunciantes = models.IntegerField()
+    total_clientes = models.IntegerField()
+    inadimplentes = models.IntegerField()
+    pag_em_dia = models.IntegerField()
+    pag_atrasados = models.IntegerField()
 
 class Administrador(models.Model):
     id_Agencia = models.ForeignKey(Agencia, null=True, on_delete=models.CASCADE, default=None) # chave estrangeira da classe Agencia

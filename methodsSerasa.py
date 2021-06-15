@@ -6,11 +6,15 @@ mydb = mysql.connector.connect(
   password="311020",
   database="a"
 )
-mycursor = mydb.cursor()
-mycursor.execute("SELECT * FROM app_resultado;")  
-dbResponse = mycursor.fetchone() 
-score = dbResponse[1] # score do cliente pego diretamente do banco dde dados na tabela 'app_resultado'
-aux = score
+try:
+    mycursor = mydb.cursor()
+    mycursor.execute("SELECT * FROM app_resultado;")  
+    dbResponse = mycursor.fetchone() 
+    score = dbResponse[1] # score do cliente pego diretamente do banco dde dados na tabela 'app_resultado'
+    aux = score
+except:
+    print("Parece que não há um limite definido... defina um limite e tente novamente.")
+
 def totalOcorrencias(value):
     if value >= 0:
         return True

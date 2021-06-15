@@ -8,10 +8,13 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import x
+import server
+""" import rede_neural  """
 """ import rede_neural
 import server """
-
 # Create your views here.
+
+
 def splashScreen(request):    
     return render(request, 'loginScreen.html')
 
@@ -70,6 +73,14 @@ def homeCliente(request):
     if User.is_authenticated:
         data = {}
         data['db'] = Cliente.objects.order_by('id')[0]
+        nome = User.objects.get(username=request.user.username)
+        data['score'] = x.pegarScore(nome)
+        if data['score'] >= 600:
+            data['status'] = 'VERDE'
+        elif data['score'] >= 400:
+            data['status'] = 'AMARELO'
+        else:
+            data['status'] = 'VERMELHO'
         return render(request,'clienteSide/clienteHomeScreen.html', data)
     else:
         data = {}
@@ -89,6 +100,8 @@ def delete(request, pk):
 def view(request, pk, username):
     data = {}
     data['db'] = Cliente.objects.get(pk = pk)
+    nome = username
+    Resultado.objects.create(score_Cliente=300,inadimplencia=5,nomeCliente=nome,pagamento_em_dia=6)
     data['emprestimo'] = Emprestimo.objects.filter(nomeCliente=username) 
     return render(request, 'adm/visualizarCliente.html', data)
 
@@ -140,7 +153,10 @@ def logout_adm(request):
 @login_required
 def solicitacoes(request):
     data = {}
-    nome = User.objects.get(username=request.user.username) 
+    nome = User.objects.get(username=request.user.username)
+    responseCliente = x.pegarCliente(nome)
+    data['email'] = responseCliente[9]
+    data['senha'] = responseCliente[7] 
     data['db'] = Emprestimo.objects.filter(nomeCliente=nome)
     aux = Pagamento.objects.order_by('limite')[0]
     data['form'] = Emprestimo_Form(request.POST)
@@ -152,6 +168,7 @@ def solicitacoes(request):
     # formulário solicitação de empréstimo
     if data['form'].is_valid():
         data['form'].save()
+        data['resultadoRequisicao'] = server.fazerRequisicao(data['email'], data['senha'], nome) 
         return redirect('solicitacoes')
     # formulario de alteração de limite
     if data['limite'].is_valid():
@@ -167,6 +184,7 @@ def docs(request):
     try:
         data['iniciar'] = User.objects.all()
         data['db'] = Formulario.objects.order_by('id')
+        data['size'] = x.pegarDocs()
         data['search'] = request.GET.get('search')
     except:
         data['db'] = Formulario.objects.all()
@@ -190,7 +208,14 @@ def adm_Cliente(request):
 @login_required
 def solicitacoesAdm(request):
     data = {}
-    data['emprestimo'] = Emprestimo.objects.all()
+    search = request.GET.get('search')
+    data['resultado'] = 'Em análise...'
+    data['respo'] = server.fazerRequisicao('vinicius.alencaarr@gmail.com', 'wcpGu8xDn', 'robertinho')
+    data['totCliente'] = len(Cliente.objects.order_by('id'))
+    if (search):
+        data['emprestimo'] = Emprestimo.objects.filter(nomeCliente__icontains = search)
+    else:
+        data['emprestimo'] = Emprestimo.objects.all()
     return render(request, 'adm/solicitacoes.html', data)
 
 

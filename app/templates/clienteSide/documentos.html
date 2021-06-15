@@ -89,10 +89,11 @@
     </form>
   </div>
 </div>
+<p style="display: none;" class="size">{{size}}</p>
 <div class="div-content">
   <div id="donutchartt" style="width: 400px; margin-left:8%; margin-top: -13%; height: 350px;"></div>
   <div style="z-index: 100; margin-top: 2%; width: 500px;">
-    <h3 style="z-index: 100;" >Você já enviou 100% da documentação necessaria para a análise de crédito</h3>
+    <h3 style="z-index: 100;" >Você já enviou <!-- <p class="size2">100%</p> -->100% da documentação necessaria para a análise de crédito</h3>
     <p style="z-index: 100;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi eum sit laboriosam, reprehenderit quia illum, nam saepe sunt eveniet omnis perspiciatis at magnam voluptatibus explicabo temporibus sed illo ipsam. Nisi?</p>
 </div>
 </div>
@@ -101,11 +102,10 @@
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
+        var s = document.querySelector('.size').innerHTML
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Entregue',     100],
-          ['Faltante',     0],
-         
+          ['Entregue',     s],
         ]);
 
         var options = {
@@ -122,6 +122,10 @@
     </script>
 
 <script>
+  (() => {
+    var s = document.querySelector('.size').innerHTML
+    document.querySelector('.size2').innerHTML = s
+  })()
   function c() {
     var user = document.querySelector('.requestUser');
     document.querySelector('.id_nomeCliente').value = user.innerHTML;

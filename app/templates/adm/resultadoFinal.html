@@ -3,8 +3,9 @@
 {% block title %}Adm | Solicitações Clientes{% endblock %}
 
 {% block content %}
-<div id="columnchart_values" style="width: 400px; height: 300px;"></div>
-<div style="width: 700px; height: 400px; position: absolute;margin-left: 48%;margin-top: -18%;">
+<div id="columnchart_values" style="width: 400px; height: 300px; position: absolute; margin-top: 7%;"></div>
+
+<div style="width: 700px; height: 400px; position: absolute;margin-left: 48%;margin-top: 5%;">
     {% for dbs in emprestimo %}
     <p style="margin-top: 6%;">Nome do cliente</p>
     <p style="font-size: 2rem;">{{dbs.nomeCliente}}</p>
@@ -22,7 +23,7 @@
     <p style="position: absolute; margin-left: 50%; margin-top: 5%;">{{dbs.qtde_Parcelas}}</p>
     {% endfor %}
 </div>
-<div style="margin-left: 70%; margin-top: 15%; color: white;">
+<div style="margin-left: 73%; margin-top: 38%; color: #fff;">
     <input style="margin: 10px" type="button" class="btn btn-outline-dark" value="Recusar">
     <input type="button" class="btn btn-outline-dark" value="Aprovar">
 </div>
@@ -33,9 +34,9 @@
     function drawChart() {
       var data = google.visualization.arrayToDataTable([
         ["Element", "Porcentagem", { role: "style" } ],
-        ["Em dia", 8, "green"],
-        ["Atrasar", 10, "yellow"],
-        ["Inadimplente", 2, "red"],
+        ["Em dia", 8, "#000"],
+        ["Atrasar", 4, "#232323"],
+        ["Inadimplir", 2, "#999999"],
       ]);
 
       var view = new google.visualization.DataView(data);

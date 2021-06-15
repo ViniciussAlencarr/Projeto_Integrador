@@ -3,8 +3,12 @@
 {% block title %}Adm | Solicitações Clientes{% endblock %}
 
 {% block content %}
-<p style="margin-left: 5%; font-size: 2rem; font-weight: 100;">Exibição de todas as solicitações de financiamento</p>
-<table style="margin-top: 2%; width: 900px; margin-left: 5%;" class="table table-dark table-borderless">
+<p style="text-align: center; margin-left: 5%; font-size: 2rem; font-weight: 100; margin-top: 11%; width: 400px; position: absolute;">Exibição de</br>todas as solicitações de financiamento</p>
+<form style="width: 52%; margin-left: 39%; margin-top: 10%; " class="formCliente" action="" method="GET">
+  <input style="position: absolute; margin-top: -5%; width: 52%; color: #212529;" class="form-control me-2" type="search" placeholder="Buscar cliente..." placeholder="Search" name="search" id="search" aria-label="Search">
+  <button style="position: absolute; margin-left: 53%; margin-top: -5%;" class="btn btn-outline-dark" type="submit">Search</button> 
+</form>
+<table style="margin-top: 2%; width: 60%; margin-left: 39%;" class="table table-dark table-borderless">
     <tr>
         <th>Código</th>
         <th>Pagamento</th>
@@ -23,14 +27,19 @@
         <td>{{dbs.valor}}</td>
         <td>{{dbs.qtde_Parcelas}}</td>
         <td>{{dbs.valor_unitario}}</td>
-        <!-- <td>{{dbs.situacao}}</td> -->
-        <td>A análisar</td>
+        <td>{{respo}}</td>
+        {% if resultado == 'Recusado' %}
+        <td><a class="btn btn-outline-light" href="/resultado/{{dbs.id}}/">Reavaliar</a></td>
+        {% else %}
         <td><a class="btn btn-outline-light" href="/resultado/{{dbs.id}}/">Verificar</a></td>
+        {% endif %}
         <!-- <input id="{{dbs.id}}" type="button"  onclick="aux()" value="Verificar"> -->
     </tr>
     {% endfor %}
     
 </table>
+<p style="margin-inline-end: 10%;">{{totCliente}}</p>
+
 <style>
     .containt {
         right: 100%;

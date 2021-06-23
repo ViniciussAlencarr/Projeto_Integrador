@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import x
 import server
+
 """ import rede_neural  """
 """ import rede_neural
 import server """
@@ -75,12 +76,16 @@ def homeCliente(request):
         data['db'] = Cliente.objects.order_by('id')[0]
         nome = User.objects.get(username=request.user.username)
         data['score'] = x.pegarScore(nome)
-        if data['score'] >= 600:
-            data['status'] = 'VERDE'
-        elif data['score'] >= 400:
-            data['status'] = 'AMARELO'
+        if data['score']:
+            if data['score'] >= 600:
+                data['status'] = 'VERDE'
+            elif data['score'] >= 400:
+                data['status'] = 'AMARELO'
+            else:
+                data['status'] = 'VERMELHO'
         else:
-            data['status'] = 'VERMELHO'
+            print('nada')
+            data['score'] = 0
         return render(request,'clienteSide/clienteHomeScreen.html', data)
     else:
         data = {}
@@ -165,10 +170,10 @@ def solicitacoes(request):
     data['limite'] = Pagamentos_Form(request.POST or None, instance=data['id_'])
     data['j'] = aux
     data['iniciar'] = User.objects.all()
+    data['resultadoRequisicao'] = server.fazerRequisicao(data['email'], data['senha'], nome) 
     # formulário solicitação de empréstimo
     if data['form'].is_valid():
         data['form'].save()
-        data['resultadoRequisicao'] = server.fazerRequisicao(data['email'], data['senha'], nome) 
         return redirect('solicitacoes')
     # formulario de alteração de limite
     if data['limite'].is_valid():

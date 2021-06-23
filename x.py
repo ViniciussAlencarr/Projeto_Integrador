@@ -19,10 +19,13 @@ def pegarDocs():
   return len(dbresponse)
 
 def pegarScore(username):
-  mycursor.execute("select score_Cliente from app_resultado where nomeCliente = '{0}';".format(username))
-  dbresponse = mycursor.fetchone()
-  return dbresponse[0]
-  mycursor.close()
+  try:
+    mycursor.execute("select score_Cliente from app_resultado where nomeCliente = '{0}';".format(username))
+    dbresponse = mycursor.fetchone()
+    return dbresponse[0]
+    mycursor.close()
+  except:
+    print('Cliente ainda não definiiu um score...')
   
 def pegarCliente(username):
   try:
@@ -39,4 +42,3 @@ def atualizarSituação(retorno, username):
   mycursor.execute(sql)
   mydb.commit()
   return mycursor
-
